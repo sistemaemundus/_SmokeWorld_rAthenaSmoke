@@ -1,0 +1,233 @@
+//= Traduzido por Alek Emundus
+prontera,146,196,6	script	Anfitrião VIP	109,{
+if (getgroupid()<4) {
+goto Prem;
+}
+
+set .@Timer, vip_status(VIP_STATUS_EXPIRE);
+
+mes "[Anfitrião VIP]";
+mes "Bem vindo "+strcharinfo(0)+",";
+mes "Por favor escolha seu menu.";
+mes "^FF0000Seu VIP vai expirar em:^000000";
+mes gettimestr("%Y-%m/%d %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE));
+mes "^FF0000Tempo restante: ^000000" + callfunc("Time2Str",.@Timer);
+next;
+switch(select("Comprar items:Pegar buffs:Nao, obrigado.")) {
+	case 1:
+		mes "Escolha os itens que voce deseja.";
+		goto item_list;
+
+		item_list:
+		menu "Universal Catalog Gold 20000 Zeny",catalog,"Unlimited Flywing Box 20000",unli,"HP Pil 10000 Zeny",HP_PILL,"SP Pil 10000 Zeny",SP_PILL,"Authoritative Badge 10000 Zeny",Authoritative;
+
+		Catalog:
+		set .@amount, countitem(12580);
+		if (zeny < 20000) mes "Desculpe, voce nao tem Zeny o suficiente.";
+		else if (.@amount >= 1) mes "Voce ja tem o item.";
+		else{
+		getitem 12581,10;
+		set zeny,zeny-20000;
+		}
+		close;
+		
+		unli:
+		set .@amount, countitem(17229);
+		if (zeny < 20000) mes "Desculpe, voce nao tem Zeny o suficiente.";
+		else if (.@amount >= 1) mes "Voce ja tem o item.";
+		else{
+		getitem 17229,1;
+		set zeny,zeny-20000;
+		}
+		close;
+
+		HP_PILL:
+		set .@amount, countitem(12274);
+		if (zeny < 10000) mes "Desculpe, voce nao tem Zeny o suficiente.";
+		else if (.@amount >= 1) mes "Voce ja tem o item.";
+		else{
+		getitem 12274,10;
+		set zeny,zeny-10000;
+		}
+		close;
+
+		SP_PILL:
+		set .@amount, countitem(12275);
+		if (zeny < 10000) mes "Desculpe, voce nao tem Zeny o suficiente.";
+		else if (.@amount >= 1) mes "Voce ja tem o item.";
+		else{
+		getitem 12275,10;
+		set zeny,zeny-10000;
+		}
+		close;
+
+		Authoritative:
+		set .@amount, countitem(662);
+		if (zeny < 10000) mes "Desculpe, voce nao tem Zeny o suficiente.";
+		else if (.@amount >= 1) mes "Voce ja tem o item.";
+		else{
+		getitem 662,10;
+		set zeny,zeny-10000;
+		}
+		close;
+
+	case 2:
+		mes "Escolha um que voce deseja.";
+		mes "1o. Buffs ^FF0000STR +8, AGI +6, DEX +4, ATK +32^000000";
+		mes "2o. Buffs ^FF0000INT +8, DEX +6, VIT +4, MATK +40^000000";
+		next;
+		mes "3o. Buffs ^FF0000Dex +8, AGI +6, LUK +4, ATK +24, MATK +24^000000";
+		mes "4o. Buffs ^FF0000all stat +6, ATK +24, MATK +24^000000";
+		goto buff;
+
+		buff:
+		menu "1o. Buffs",First,"2o. Buffs",Second,"3o. Buffs",Third,"4o. Buffs",Fourth;
+
+First:
+sc_start SC_STRFOOD,3600000,8;
+sc_start SC_AGIFOOD,3600000,6;
+sc_start SC_DEXFOOD,3600000,4;
+sc_start SC_ATKPOTION,3600000,32;
+percentheal 100,100;
+close;
+
+Second:
+sc_start SC_INTFOOD,3600000,8;
+sc_start SC_DEXFOOD,3600000,6;
+sc_start SC_VITFOOD,3600000,4;
+sc_start SC_MATKPOTION,3600000,40;
+percentheal 100,100;
+close;
+
+Third:
+sc_start SC_DEXFOOD,3600000,8;
+sc_start SC_AGIFOOD,3600000,6;
+sc_start SC_LUKFOOD,3600000,4;
+sc_start SC_ATKPOTION,3600000,24;
+sc_start SC_MATKPOTION,3600000,24;
+percentheal 100,100;
+close;
+
+Fourth:
+sc_start SC_STRFOOD,3600000,6;
+sc_start SC_AGIFOOD,3600000,6;
+sc_start SC_VITFOOD,3600000,6;
+sc_start SC_INTFOOD,3600000,6;
+sc_start SC_DEXFOOD,3600000,6;
+sc_start SC_LUKFOOD,3600000,6;
+sc_start SC_ATKPOTION,3600000,24;
+sc_start SC_MATKPOTION,3600000,24;
+percentheal 100,100;
+close;
+
+	case 3:
+	mes "Vejo voce em breve.";
+	close;
+	}
+
+Prem:
+set .@day,1000;
+set .@week,5000;
+set .@month,20000;
+if (getgroupid()>60) {
+mes "[Anfitrião VIP]";
+mes "Desculpe, GM nao sao permitidos de usar nossos servicos.";
+close;
+}
+
+mes "[Anfitrião VIP]";
+mes "Aqui estao as taxas de acesso VIP.";
+mes "24 horas "+.@day+" cash point";
+mes "1 semana "+.@week+" cash point";
+mes "1 mes "+.@month+" cash point";
+mes "seus cash points atuais "+#CASHPOINTS+".";
+next;
+switch(select("Eu quero de 24 horas:Eu quero de 1 semana:Eu quero de 1 mes:Nao, obrigado.")) {
+case 1:
+if (#CASHPOINTS < .@day) {
+mes "[Anfitrião VIP]";
+mes "Seus cash points nao sao o suficiente,";
+mes ""+.@day+" cash points para usar este servico.";
+close;
+}
+set #CASHPOINTS, #CASHPOINTS - .@day;
+atcommand "@vip +24h "+strcharinfo(0)+"";
+mes "[Anfitrião VIP]";
+mes "Aproveite seu beneficio.";
+dispbottom "seus cash points atuais "+#CASHPOINTS+".";
+close;
+
+case 2:
+if (#CASHPOINTS < .@week) {
+mes "[Anfitrião VIP]";
+mes "Seus cash points nao sao o suficiente,";
+mes ""+.@week+" cash points para usar este servico.";
+close;
+}
+set #CASHPOINTS, #CASHPOINTS - .@week;
+atcommand "@vip +7d "+strcharinfo(0)+"";
+mes "[Anfitrião VIP]";
+mes "Aproveite seu beneficio.";
+dispbottom "seus cash points atuais "+#CASHPOINTS+".";
+close;
+
+case 3:
+if (#CASHPOINTS < .@month) {
+mes "[Anfitrião VIP]";
+mes "Seus cash points nao sao o suficiente,";
+mes ""+.@month+" cash points para usar este servico.";
+close;
+}
+set #CASHPOINTS, #CASHPOINTS - .@month;
+atcommand "@vip +1m "+strcharinfo(0)+"";
+mes "[Anfitrião VIP]";
+mes "Aproveite seu beneficio.";
+dispbottom "seus cash points atuais "+#CASHPOINTS+".";
+close;
+
+case 4:
+mes "[Anfitrião VIP]";
+mes "Ate mais.";
+close;
+}
+
+}
+
+// --------------------------------------------------
+//	Duplicates:
+// --------------------------------------------------
+alberta,33,240,4	duplicate(Anfitrião VIP)	Anfitrião VIP#alb	109
+aldebaran,146,116,4	duplicate(Anfitrião VIP)	Anfitrião VIP#alde	109
+amatsu,205,87,4	duplicate(Anfitrião VIP)	Anfitrião VIP#ama	109
+ayothaya,212,172,6	duplicate(Anfitrião VIP)	Anfitrião VIP#ayo	109
+comodo,191,161,4	duplicate(Anfitrião VIP)	Anfitrião VIP#com	109
+einbech,55,36,6	duplicate(Anfitrião VIP)	Anfitrião VIP#einbe	109
+einbroch,72,206,4	duplicate(Anfitrião VIP)	Anfitrião VIP#einbr	109
+geffen,127,66,4	duplicate(Anfitrião VIP)	Anfitrião VIP#gef	109
+gonryun,162,126,4	duplicate(Anfitrião VIP)	Anfitrião VIP#gon	109
+hugel,102,148,4	duplicate(Anfitrião VIP)	Anfitrião VIP#hug	109
+izlude,128,152,4	duplicate(Anfitrião VIP)	Anfitrião VIP#izl	109	//Pre-RE: (132,120)
+jawaii,248,134,4	duplicate(Anfitrião VIP)	Anfitrião VIP#jaw	109
+lighthalzen,154,104,4	duplicate(Anfitrião VIP)	Anfitrião VIP#lhz	109
+louyang,205,105,6	duplicate(Anfitrião VIP)	Anfitrião VIP#lou	109
+manuk,272,150,6	duplicate(Anfitrião VIP)	Anfitrião VIP#man	109
+mid_camp,216,286,4	duplicate(Anfitrião VIP)	Anfitrião VIP#mid	109
+morocc,146,89,4	duplicate(Anfitrião VIP)	Anfitrião VIP#mor	109
+moscovia,226,195,4	duplicate(Anfitrião VIP)	Anfitrião VIP#mos	109
+niflheim,199,180,4	duplicate(Anfitrião VIP)	Anfitrião VIP#nif	109
+payon,178,109,4	duplicate(Anfitrião VIP)	Anfitrião VIP#pay	109
+rachel,138,122,4	duplicate(Anfitrião VIP)	Anfitrião VIP#rac	109
+splendide,198,153,4	duplicate(Anfitrião VIP)	Anfitrião VIP#spl	109
+umbala,97,148,3	duplicate(Anfitrião VIP)	Anfitrião VIP#umb	109
+veins,211,120,4	duplicate(Anfitrião VIP)	Anfitrião VIP#ve	109
+xmas,142,139,6	duplicate(Anfitrião VIP)	Anfitrião VIP#xmas	109
+yuno,164,50,4	duplicate(Anfitrião VIP)	Anfitrião VIP#yuno	109
+
+// --------------------------------------------------
+//	Duplicates (Renewal):
+// --------------------------------------------------
+brasilis,199,225,4	duplicate(Anfitrião VIP)	Anfitrião VIP#bra	109
+dewata,202,190,6	duplicate(Anfitrião VIP)	Anfitrião VIP#dew	109
+dicastes01,196,197,6	duplicate(Anfitrião VIP)	Anfitrião VIP#dic	109
+malangdo,137,116,6	duplicate(Anfitrião VIP)	Anfitrião VIP#mal	109
+malaya,228,195,4	duplicate(Anfitrião VIP)	Anfitrião VIP#ma	109

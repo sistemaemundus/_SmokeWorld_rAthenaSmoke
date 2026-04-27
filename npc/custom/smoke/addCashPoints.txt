@@ -1,0 +1,5 @@
+function	script	addCashPoints	{
+	set #CASHPOINTS, #CASHPOINTS + getarg(0);
+	dispbottom "Adicionado " + getarg(0) + " de Cash para você, total: " + #CASHPOINTS;
+	end;
+}

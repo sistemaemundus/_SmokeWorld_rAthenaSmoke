@@ -1,0 +1,50 @@
+// Criado por Alek Emundus
+// Comando @changerates para alterar as rates do servidor
+-	script	ChangeRates	-1,{
+	OnInit:
+		bindatcmd "changerates",strnpcinfo(0) + "::OnAtcommand",99,99;
+		end;
+	OnAtcommand:
+		mes "Rate atual:";
+		mes "EXP Base Rate: " + getbattleflag("base_exp_rate");
+		mes "EXP Job Rate: " + getbattleflag("job_exp_rate");
+		mes "Item Drop Rate: " + getbattleflag("item_rate_common");
+		mes "Gostaria de alterar?";
+		next;
+		switch(select("- Sim.:- Não."))
+		{
+			case 1:
+				mes "Insira EXP Base Rate:";
+				input exp_rate_base;
+				next;
+				mes "Insira EXP Job Rate:";
+				input exp_rate_job;
+				next;
+				mes "Insira Item Drop Rate:";
+				input exp_rate_drop;
+				next;
+				mes "Gostaria de confirmar?";
+				mes "EXP Base Rate: " + exp_rate_base;
+				mes "EXP Job Rate: " + exp_rate_job;
+				mes "Item Drop Rate: " + exp_rate_drop;
+				next;
+				switch(select("- Sim.:- Nao."))
+				{
+					case 1: // Aplica as rates
+						setbattleflag("base_exp_rate", exp_rate_base,true);
+						setbattleflag("job_exp_rate", exp_rate_job,true);
+						setbattleflag("item_rate_common", exp_rate_drop,true);
+						setbattleflag("item_rate_heal", exp_rate_drop,true);
+						setbattleflag("item_rate_use", exp_rate_drop,true);
+						setbattleflag("item_rate_equip", exp_rate_drop,true);
+						announce "As rates foram ajustadas: "+(exp_rate_base/100)+"x Rate Base, "+(exp_rate_job/100)+"x Rate Job, "+(exp_rate_drop/100)+"x Rate Drop.",bc_all,0xFF6060;
+						end;
+					case 2:
+						mes "Ok, use @changerates quando quiser alterar!";
+						end;
+				}
+			case 2:
+					mes "Ok, use @changerates quando quiser alterar!";
+					end;
+		}
+}

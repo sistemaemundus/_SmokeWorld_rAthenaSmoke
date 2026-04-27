@@ -1,0 +1,37 @@
+-	script	AbrirMochila	-1,{
+
+	OnInit:
+		bindatcmd "mochila",strnpcinfo(0) + "::OnAtcommand";
+		end;
+
+	OnAtcommand:
+
+		.@mid = getequipid(EQI_COSTUME_HEAD_MID);
+
+		switch (.@mid) {
+
+			case 840047: // Mochila Azul
+				message strcharinfo(0), "Abrindo Mochila Azul!";
+				openstorage2 2, STOR_MODE_GET|STOR_MODE_PUT;
+				end;
+
+			case 840048: // Mochila Verde
+				message strcharinfo(0), "Abrindo Mochila Verde!";
+				openstorage2 3, STOR_MODE_GET|STOR_MODE_PUT;
+				end;
+
+			case 840049: // Mochila Vermelha
+				message strcharinfo(0), "Abrindo Mochila Vermelha!";
+				openstorage2 4, STOR_MODE_GET|STOR_MODE_PUT;
+				end;
+
+			case 840050: // Mochila Amarela
+				message strcharinfo(0), "Abrindo Mochila Amarela!";
+				openstorage2 5, STOR_MODE_GET|STOR_MODE_PUT;
+				end;
+
+			default:
+				message strcharinfo(0), "Necessita estar com uma Mochilinha equipada!.";
+				end;
+		}
+}

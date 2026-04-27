@@ -1,0 +1,101 @@
+//===== rAthena Script =======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Basic healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//============================================================
+//==== Edited by Alek Emundus ================================
+//= Added more buffs for VIP and GM Players
+
+-	script	Healer	-1,{
+
+	.@Price = 0;	// Zeny required for heal
+	.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
+	.@Delay = 0;	// Heal delay, in seconds
+
+	if (@HD > gettimetick(2))
+		end;
+	if (.@Price) {
+		message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.@Price) + " Zeny.";
+		if (Zeny < .@Price)
+			end;
+		if (select("^0055FFHeal^000000:^777777Cancel^000000") == 2)
+			end;
+		Zeny -= .@Price;
+	}
+	specialeffect2 EF_HEAL2;
+	specialeffect2 EF_DISPELL;
+	specialeffect2 EF_CLEARTIME;
+	percentheal 100,100;
+	healap 200;
+	identifyall;
+	repairall;
+	if (.@Buffs) {
+		specialeffect2 EF_INCAGILITY;
+		sc_start SC_INCREASEAGI,3600000,10;
+		specialeffect2 EF_BLESSING;
+		sc_start SC_BLESSING,3600000,10;
+	}
+	if ((getgroupid() > 0)) {
+		specialeffect2 EF_IMPOSITIO;
+		sc_start SC_IMPOSITIO,3600000,5;
+		specialeffect2 EF_MAGNIFICAT;
+		sc_start SC_MAGNIFICAT,3600000,5;
+		specialeffect2 EF_ASSUMPTIO;
+		sc_start SC_ASSUMPTIO,3600000,5;
+	}
+	if (.@Delay)
+		@HD = gettimetick(2) + .@Delay;
+	end;
+}
+
+
+// Duplicates
+//============================================================
+alberta,25,240,6	duplicate(Healer)	Healer#alb	91
+aldebaran,135,118,6	duplicate(Healer)	Healer#alde	91
+amatsu,200,79,4	duplicate(Healer)	Healer#ama	91
+ayothaya,207,169,6	duplicate(Healer)	Healer#ayo	91
+comodo,184,158,6	duplicate(Healer)	Healer#com	91
+einbech,57,36,6	duplicate(Healer)	Healer#einbe	91
+einbroch,57,202,6	duplicate(Healer)	Healer#einbr	91
+geffen,115,72,6	duplicate(Healer)	Healer#gef	91
+gonryun,156,122,6	duplicate(Healer)	Healer#gon	91
+hugel,89,150,6	duplicate(Healer)	Healer#hug	91
+izlude,121,150,6	duplicate(Healer)	Healer#izl	91	//Pre-RE: (125,118)
+jawaii,250,139,4	duplicate(Healer)	Healer#jaw	91
+lighthalzen,152,100,6	duplicate(Healer)	Healer#lhz	91
+louyang,226,103,4	duplicate(Healer)	Healer#lou	91
+manuk,272,144,6	duplicate(Healer)	Healer#man	91
+mid_camp,203,289,6	duplicate(Healer)	Healer#mid	91
+moc_ruins,72,164,4	duplicate(Healer)	Healer#moc	91
+morocc,153,97,6	duplicate(Healer)	Healer#mor	91
+moscovia,220,191,4	duplicate(Healer)	Healer#mos	91
+niflheim,212,182,5	duplicate(Healer)	Healer#nif	91
+payon,179,106,4	duplicate(Healer)	Healer#pay	91
+prontera,162,193,4	duplicate(Healer)	Healer#prt	91
+rachel,125,116,6	duplicate(Healer)	Healer#rac	91
+splendide,201,153,4	duplicate(Healer)	Healer#spl	91
+thor_camp,249,74,4	duplicate(Healer)	Healer#thor	91
+umbala,105,148,3	duplicate(Healer)	Healer#umb	91
+veins,217,121,4	duplicate(Healer)	Healer#ve	91
+xmas,143,136,4	duplicate(Healer)	Healer#xmas	91
+yuno,164,45,4	duplicate(Healer)	Healer#yuno	91
+
+// Duplicates (Renewal)
+//============================================================
+brasilis,194,221,6	duplicate(Healer)	Healer#bra	91
+dewata,195,187,4	duplicate(Healer)	Healer#dew	91
+dicastes01,201,194,4	duplicate(Healer)	Healer#dic	91
+ecl_in01,45,60,4	duplicate(Healer)	Healer#ecl	91
+malangdo,132,114,6	duplicate(Healer)	Healer#mal	91
+malaya,227,204,6	duplicate(Healer)	Healer#ma	91
+mora,55,152,4	duplicate(Healer)	Healer#mora	91

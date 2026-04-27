@@ -1,0 +1,5 @@
+function	script	addNossaCoin	{
+	set #NOSSACOIN, #NOSSACOIN + getarg(0);
+	dispbottom "Adicionado " + getarg(0) + " NossaCoins para você, total: " + #NOSSACOIN;
+	end;
+}

@@ -1,0 +1,20 @@
+// Criado por Alek Emundus
+// comando @coins
+// mostra quanto de cash e nossaCoins o player tem
+// e FarmZone Coins
+
+-	script	NossaCoin	-1,{
+	OnInit:
+		bindatcmd "coins",strnpcinfo(0) + "::OnAtcommand";
+		end;
+	OnAtcommand:
+		dispbottom "======== Coins ========";
+		dispbottom "1. CashPoints: " + #CASHPOINTS;
+		dispbottom "2. NossaCoins: " + #NOSSACOIN;
+		dispbottom "3. FarmCoins: " + #FARMCOIN;
+		dispbottom "4. LevelingPoints: " + #LevelingPoints;
+		dispbottom "5. KafraPoints: " + #KAFRAPOINTS;
+		dispbottom "6. MineiroCoins: " + #MineiroCoins;
+		dispbottom "======== Smoke ========";
+		end;
+}

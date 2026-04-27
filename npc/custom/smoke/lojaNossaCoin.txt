@@ -1,0 +1,129 @@
+//===== rAthena Script =======================================
+// Criado por Alek Emundus
+// Vende itens, em Prontera, usando NossaCoin
+// Troca NossaCoin em grandes quantidades!
+
+prontera,151,187,5	script	Nossa Loja	72,{
+	mes "[Nossa Loja]";
+	mes "Olá, escolha sua opção:";
+	switch(select("-Trocar NossaCoin.:-Comprar Itens.:-Trocar NossaCoin.:-Trocar por Cash.")) {
+		case 1: // Comprar NossaCoin
+			clear;
+			mes "[Nossa Loja]";
+			mes "Informe a quantidade de NossaCoins para trocar.";
+			mes "Você possui " + #NOSSACOIN + " NossaCoins";
+			mes "Caso deseja cancelar, informe 0.";
+			input .@Value;
+			if(#NOSSACOIN >= .@Value){
+				set #NOSSACOIN, #NOSSACOIN - .@Value;
+				if (.@Value <= 0) {
+					clear;
+					mes "[Nossa Loja]";
+					mes "Valor incorreto!";
+					mes "Você possui apenas " + #NOSSACOIN + " NossaCoins";
+					close;
+				} else {
+				getitem 840095,.@Value;
+				clear;
+				mes "[Nossa Loja]";
+				mes "Você trocou " + .@Value + " NossaCoins, volte sempre!";
+				mes "Você tem " + #NOSSACOIN + " NossaCoins restantes.";
+				close;
+				}
+			}
+		case 2: // Comprar itens
+			clear;
+			mes "[Nossa Loja]";
+			//mes "Em construção, volte em breve!";
+			mes "Aqui está!";
+			close2;
+			callshop "nossaLoja",1;
+			end;
+		case 3: // Trocar NossaCoin
+			clear;
+			mes "[Nossa Loja]";
+			mes "Posso trocar grandes quantias de NossaCoin!";
+			mes "Caso deseja cancelar, informe 0.";
+			switch(select("-Ok, vamos lá!:-Não, obrigado...")){
+				case 1: //Trocar nossa coin
+					input .@Value;
+					if(countitem(840095) >= .@Value){
+					set #NOSSACOIN, #NOSSACOIN + .@Value;
+					delitem 840095,.@Value;
+					clear;
+					mes "[Nossa Loja]";
+					mes "Você trocou " + .@Value + " NossaCoins, volte sempre!";
+					mes "Você tem " + #NOSSACOIN + " NossaCoins na conta, e " + countitem(840095) + " no inventário!";
+					close;
+					} else {
+						clear;
+						mes "[Nossa Loja]";
+						mes "Você não tem " + .@Value + " NossaCoins para trocar...";
+						mes "Você tem " + countitem(840095) + " NossaCoins.";
+						close;
+					}
+				case 2: //Cancelar
+					clear;
+					mes "[Nossa Loja]";
+					mes "Tudo bem, volte sempre!";
+					close;
+			}
+		case 4: // Trocar por Cash
+			clear;
+			mes "[Nossa Loja]";
+			mes "Posso trocar NossaCoins por CashPoints!";
+			mes "A taxa de troca é 100:1, ou seja, 100 NossaCoins por 1 CashPoint.";
+			mes "Caso deseja cancelar, informe 0.";
+			switch(select("-Eu gostaria!:-Não, obrigado...")){
+				case 1: //Trocar por Cash
+					clear;
+					mes "[Nossa Loja]";
+					mes "Informe a quantidade de NossaCoins para trocar por Cash.";
+					mes "Você possui " + #NOSSACOIN + " NossaCoins";
+					mes "Caso deseja cancelar, informe 0.";
+					next;
+					input .@Value;
+					if (.@Value == 0) close;
+					// ?? VALIDAÇÃO DE MÚLTIPLO DE 100
+					if (.@Value % 100 != 0) {
+						mes "[Nossa Loja]";
+						mes "Você só pode trocar valores múltiplos de 100.";
+						mes "Exemplo: 100, 200, 300...";
+						close;
+					}
+					if(#NOSSACOIN >= .@Value){
+						.@cash = .@Value / 100;
+						clear;
+						mes "[Nossa Loja]";
+						mes "Você tem certeza que deseja trocar " + .@Value + " NossaCoins por " + .@cash + " Cash?";
+						mes "Você tem " + #NOSSACOIN + " NossaCoins, e " + #CASHPOINTS + " CashPoints.";
+						switch(select("-Sim, tenho certeza!:-Não, obrigado...")){
+							case 1: //Confirmar troca
+								set #CASHPOINTS, #CASHPOINTS + .@cash;
+								set #NOSSACOIN, #NOSSACOIN - .@Value;
+								clear;
+								mes "[Nossa Loja]";
+								mes "Você trocou " + .@Value + " NossaCoins por " + .@cash + " Cash!";
+								mes "Agora você tem " + #NOSSACOIN + " NossaCoins e " + #CASHPOINTS + " CashPoints.";
+								close;
+							case 2: //Cancelar
+								clear;
+								mes "[Nossa Loja]";
+								mes "Tudo bem, volte sempre!";
+								close;
+						}
+					} else {
+						clear;
+						mes "[Nossa Loja]";
+						mes "Você não tem " + .@Value + " NossaCoins para trocar...";
+						mes "Você tem " + #NOSSACOIN + " NossaCoins.";
+						close;
+					}
+				case 2: //Cancelar
+					clear;
+					mes "[Nossa Loja]";
+					mes "Tudo bem, volte sempre!";
+					close;
+			}
+	}
+}

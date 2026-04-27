@@ -1,0 +1,9 @@
+-	script	nossaCoinGM	-1,{
+	OnInit:
+		bindatcmd "nossacoin",strnpcinfo(3) + "::OnAtcommand",99,99;
+		end;
+	OnAtcommand:
+		input .@Value;
+		set #NOSSACOIN, #NOSSACOIN + .@Value;
+		dispbottom "Adicionado " + .@Value + " NossaCoins, agora voce tem " + #NOSSACOIN + ".";
+}

@@ -1,0 +1,284 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Combo Database
+###########################################################################
+#
+# Settings
+#
+###########################################################################
+# - Combos:                 List of combo sets.
+#    - Combo:               Sequence of items to define a combo (minimum of 2 items).
+#       - <item name>       AEGIS name of the item
+#   Script                  Script to execute when one of the combos is equipped. (Default: null)
+#   Clear                   Remove the defined combos from database. (Default: false)
+###########################################################################
+
+Header:
+  Type: COMBO_DB
+  Version: 1
+
+Body:
+  - Combos:
+      - Combo:
+          - smw_godlike_armor_t1
+          - smw_godlike_mantle_t1
+          - smw_godlike_boots_t1
+    Smoke: true
+    Script: |
+      bonus bAtkRate,15;
+      bonus bMatkRate,15;
+      bonus2 bAddClass,Class_Boss,8;
+      bonus2 bMagicAddClass,Class_Boss,8;
+      bonus bSmokeGearProg,1;
+  - Combos:
+      - Combo:
+          - smw_phoenix_armor_t1
+          - smw_phoenix_mantle_t1
+          - smw_phoenix_boots_t1
+    Smoke: true
+    Script: |
+      bonus bAtkRate,35;
+      bonus bMatkRate,35;
+      bonus2 bAddClass,Class_Boss,15;
+      bonus2 bMagicAddClass,Class_Boss,15;
+      bonus bSmokeGearProg,2;
+  - Combos:
+      - Combo:
+          - smw_azur_armor_t1
+          - smw_azur_mantle_t1
+          - smw_azur_boots_t1
+    Smoke: true
+    Script: |
+      bonus bAtkRate,70;
+      bonus bMatkRate,70;
+      bonus2 bAddClass,Class_Boss,25;
+      bonus2 bMagicAddClass,Class_Boss,25;
+      bonus bSmokeGearProg,3;
+  - Combos:
+      - Combo:
+          - smw_ascension_armor_t1
+          - smw_ascension_mantle_t1
+          - smw_ascension_boots_t1
+    Smoke: true
+    Script: |
+      bonus bAtkRate,90;
+      bonus bMatkRate,90;
+      bonus2 bAddClass,Class_Boss,35;
+      bonus2 bMagicAddClass,Class_Boss,35;
+      bonus bSmokeGearProg,4;
+  - Combos:
+      - Combo:
+          - smw_godlike_armor_t2
+          - smw_godlike_mantle_t2
+          - smw_godlike_boots_t2
+    Smoke: true
+    Script: |
+      bonus bAtkRate,25;
+      bonus bMatkRate,25;
+      bonus2 bAddClass,Class_Boss,12;
+      bonus2 bMagicAddClass,Class_Boss,12;
+      bonus bSmokeGearProg,1;
+  - Combos:
+      - Combo:
+          - smw_phoenix_armor_t2
+          - smw_phoenix_mantle_t2
+          - smw_phoenix_boots_t2
+    Smoke: true
+    Script: |
+      bonus bAtkRate,50;
+      bonus bMatkRate,50;
+      bonus2 bAddClass,Class_Boss,22;
+      bonus2 bMagicAddClass,Class_Boss,22;
+      bonus bSmokeGearProg,2;
+  - Combos:
+      - Combo:
+          - smw_azur_armor_t2
+          - smw_azur_mantle_t2
+          - smw_azur_boots_t2
+    Smoke: true
+    Script: |
+      bonus bAtkRate,70;
+      bonus bMatkRate,70;
+      bonus2 bAddClass,Class_Boss,25;
+      bonus2 bMagicAddClass,Class_Boss,25;
+      bonus bSmokeGearProg,3;
+  - Combos:
+      - Combo:
+          - smw_ascension_armor_t2
+          - smw_ascension_mantle_t2
+          - smw_ascension_boots_t2
+    Smoke: true
+    Script: |
+      bonus bAtkRate,120;
+      bonus bMatkRate,120;
+      bonus2 bAddClass,Class_Boss,48;
+      bonus2 bMagicAddClass,Class_Boss,48;
+      bonus bSmokeGearProg,4;
+  - Combos:
+      - Combo:
+          - smw_godlike_armor_t3
+          - smw_godlike_mantle_t3
+          - smw_godlike_boots_t3
+    Smoke: true
+    Script: |
+      bonus bAtkRate,35;
+      bonus bMatkRate,35;
+      bonus2 bAddClass,Class_Boss,18;
+      bonus2 bMagicAddClass,Class_Boss,18;
+      bonus bSmokeGearProg,1;
+  - Combos:
+      - Combo:
+          - smw_phoenix_armor_t3
+          - smw_phoenix_mantle_t3
+          - smw_phoenix_boots_t3
+    Smoke: true
+    Script: |
+      bonus bAtkRate,65;
+      bonus bMatkRate,65;
+      bonus2 bAddClass,Class_Boss,28;
+      bonus2 bMagicAddClass,Class_Boss,28;
+      bonus bSmokeGearProg,2;
+  - Combos:
+      - Combo:
+          - smw_azur_armor_t3
+          - smw_azur_mantle_t3
+          - smw_azur_boots_t3
+    Smoke: true
+    Script: |
+      bonus bAtkRate,105;
+      bonus bMatkRate,105;
+      bonus2 bAddClass,Class_Boss,38;
+      bonus2 bMagicAddClass,Class_Boss,38;
+      bonus bSmokeGearProg,3;
+  - Combos:
+      - Combo:
+          - smw_ascension_armor_t3
+          - smw_ascension_mantle_t3
+          - smw_ascension_boots_t3
+    Smoke: true
+    Script: |
+      bonus bAtkRate,140;
+      bonus bMatkRate,140;
+      bonus2 bAddClass,Class_Boss,55;
+      bonus2 bMagicAddClass,Class_Boss,55;
+      bonus bSmokeGearProg,4;
+  - Combos:
+      - Combo:
+          - smk_ascended_armor
+          - smk_ascended_garment
+          - smk_ascended_shoes
+    Smoke: true
+    Script: |
+      // ===============================
+      // ASCENDED TYPE SYSTEM (Slot 4)
+      // ===============================
+      .@armor_card   = getequipcardid(EQI_ARMOR, 3);
+      .@garment_card = getequipcardid(EQI_GARMENT, 3);
+      .@boots_card   = getequipcardid(EQI_SHOES, 3);
+      if (.@armor_card > 0 && .@garment_card > 0 && .@boots_card > 0) {
+          if (.@armor_card == .@garment_card && .@armor_card == .@boots_card) {
+              // PHYSICAL (DPS corpo a corpo / crítico / burst)
+                if (.@armor_card == 840209) {
+                    bonus bAtkRate,200;
+                    bonus2 bAddClass,Class_Boss,20;
+                    bonus bPow,15;        // escala dano físico
+                    bonus bCrt,10;        // reforça build crítica
+                }
+
+                // RANGED (precisão + consistência)
+                else if (.@armor_card == 840210) {
+                    bonus bLongAtkRate,25;
+                    bonus bHit,50;
+                    bonus bCon,15;        // melhora dano ranged e precisão scaling
+                    bonus bPow,5;         // leve suporte ofensivo
+                }
+
+                // MAGIC (caster puro)
+                else if (.@armor_card == 840211) {
+                    bonus bMatkRate,200;
+                    bonus2 bMagicAddClass,Class_Boss,20;
+                    bonus bSpl,15;        // principal stat mágica
+                    bonus bWis,10;        // sustain/cast performance
+                }
+
+                // SUPPORT (cura + utilidade)
+                else if (.@armor_card == 840212) {
+                    bonus bHealPower,30;
+                    bonus bDelayRate,-15;
+                    bonus bWis,15;        // melhora suporte/cura
+                    bonus bSta,10;        // sobrevivência (importante pra suporte)
+                }
+
+                // HYBRID (build mista viável)
+                else if (.@armor_card == 840213) {
+                    bonus bAtkRate,120;
+                    bonus bMatkRate,120;
+                    bonus bAspdRate,10;
+                    bonus bPow,8;
+                    bonus bSpl,8;
+                    bonus bCon,8;         // estabilidade híbrida
+                }
+
+                // ELEMENTAL CLASS (especialista em elementos)
+                else if (.@armor_card == 840214) {
+                    bonus2 bAddEle,Ele_All,20;
+                    bonus2 bMagicAddEle,Ele_All,20;
+                    bonus bSpl,10;        // magia elemental
+                    bonus bPow,10;        // físico elemental
+                    bonus bWis,5;         // controle/consistência
+                }
+          }
+      }
+      // ===============================
+      // REFINE TOTAL BONUS
+      // ===============================
+
+      .@total_refine = getequiprefinerycnt(EQI_ARMOR)
+                     + getequiprefinerycnt(EQI_GARMENT)
+                     + getequiprefinerycnt(EQI_SHOES);
+        // 10 + 10 + 10
+        if (.@total_refine >= 30) {
+            bonus bAllStats,5;
+            bonus bPow,5;
+            bonus bSta,5;
+            bonus bWis,5;
+            bonus bSpl,5;
+            bonus bCon,5;
+            bonus bCrt,5;
+        }
+        // 15 + 15 + 15
+        if (.@total_refine >= 45) {
+            bonus bAllStats,5;
+            bonus bPow,5;
+            bonus bSta,5;
+            bonus bWis,5;
+            bonus bSpl,5;
+            bonus bCon,5;
+            bonus bCrt,5;
+        }
+        // 20 + 20 + 20
+        if (.@total_refine >= 60) {
+            bonus bAllStats,10;
+            bonus bPow,10;
+            bonus bSta,10;
+            bonus bWis,10;
+            bonus bSpl,10;
+            bonus bCon,10;
+            bonus bCrt,10;
+        }

@@ -1,0 +1,115 @@
+prontera,148,194,1	script	Pets de Classes	612,{
+	mes "[Pets de Classes]";
+	mes "Olá, gostaria de pegar o que?";
+	switch(select("- Carrinho.:- Falcão.:- Montaria.:- Robô.:- Remover Pets")){
+		case 1:
+			if(getskilllv("MC_PUSHCART")){
+				if(checkcart()){
+					clear;
+					mes "[Pets de Classes]";
+					mes "Você já tem um carrinho...";
+					close;
+				} else {
+					setcart true;
+					clear;
+					mes "[Pets de Classes]";
+					mes "Prontinho, até mais!";
+					close;
+				}
+			} else {
+				clear;
+				mes "[Pets de Classes]";
+				mes "Você não tem a skill necessária...";
+				close;
+			}
+		case 2:
+			if(getskilllv("HT_FALCON")){
+				if(checkfalcon()){
+					clear;
+					mes "[Pets de Classes]";
+					mes "Você já tem um falcão...";
+					close;
+				} else {
+					setfalcon true;
+					clear;
+					mes "[Pets de Classes]";
+					mes "Prontinho, até mais!";
+					close;
+				}
+			} else {
+				clear;
+				mes "[Pets de Classes]";
+				mes "Você não tem a skill necessária...";
+				close;
+			}
+		case 3:
+			if(getskilllv("KN_RIDING")){
+				if(checkriding()){
+					clear;
+					mes "[Pets de Classes]";
+					mes "Você já tem uma montaria...";
+					close;
+				} else {
+					setriding true;
+					clear;
+					mes "[Pets de Classes]";
+					mes "Prontinho, até mais!";
+					close;
+				}
+			} else {
+				clear;
+				mes "[Pets de Classes]";
+				mes "Você não tem a skill necessária...";
+				close;
+			}
+		case 4:
+			if(getskilllv("NC_MADOLICENCE")){
+				if(checkmadogear()){
+					clear;
+					mes "[Pets de Classes]";
+					mes "Você já tem um robô...";
+					close;
+				} else {
+					setmadogear true;
+					clear;
+					mes "[Pets de Classes]";
+					mes "Prontinho, até mais!";
+					close;
+				}
+			} else {
+				clear;
+				mes "[Pets de Classes]";
+				mes "Você não tem a skill necessária...";
+				close;
+			}
+		case 5:
+			if(checkcart()){
+				setcart false;
+				clear;
+				mes "[Pets de Classes]";
+				mes "Prontinho, até mais!";
+				close;
+			}
+			if(checkfalcon()){
+				setfalcon false;
+				clear;
+				mes "[Pets de Classes]";
+				mes "Prontinho, até mais!";
+				close;
+			}
+			if(checkriding()){
+				setriding false;
+				clear;
+				mes "[Pets de Classes]";
+				mes "Prontinho, até mais!";
+				close;
+			}
+			if(checkmadogear()){
+				setmadogear false;
+				clear;
+				mes "[Pets de Classes]";
+				mes "Prontinho, até mais!";
+				close;
+			}
+	}	
+}

@@ -1,0 +1,141 @@
+//===== rAthena Script ======================================= 
+//= @restock command
+//===== By: ==================================================
+//= Mastagoon
+//===== Description: =========================================
+//= @restock command to get certain items from your storage
+//===== Current Version: =====================================
+//= 1.0
+//= 1.1 added town only and clean up on some of the code.
+//= 1.2 added an if function when your items in your inventory is greater than the items from your stock list<hannahhaven621>
+//= 1.3 added an option to enable or disable ticket item consumption. added an option to allow the command to work outside ot towns (credit to hannahhaven621) [Mastagoon]
+//===== TODO: ================================================
+//=	@restock SNAPSHOT
+//============================================================
+-	script	restock_atcmd	-1,{	
+function	addSpace	{
+	set .@space$, "";
+	for(.@i = 1; .@i <= getarg(0); .@i++) {
+		set .@space$, .@space$+" ";
+	}
+	return .@space$;
+}
+
+function	showRestockHelp	{
+	dispbottom "Command Usage : ";
+	dispbottom "@restock add <itemid> <quantity> : add item to restock list";
+	dispbottom "@restock remove <itemid> : remove item from restock list";
+	dispbottom "@restock list : show current restock list";
+	dispbottom "@restock reset : reset restock list";
+	dispbottom "@restock help/h : show this help menu";
+	dispbottom "@restock : get restock items from the storage.";
+}
+
+OnInit:
+	.TicketID = 0; // The ID of the item consumed per restock. set to 0 to disbale.
+    .towns_only = 0;    // Can this command be used outside of town? 1:0
+	setarray .allowedtypes[0],0,1,2,3,7,8,9,10,11,12; //healing,usable,etc,delayed usable
+	bindatcmd "restock",strnpcinfo(3)+"::OnAtcommand";
+	end;
+
+OnAtcommand:
+	switch(.@atcmd_numparameters) {
+		case 0:	// @restock command
+			if(getarraysize(RestockList) == 0) {
+				dispbottom "Your restock list is empty.";
+				end;
+			} 
+			if(.towns_only && !getmapflag(strcharinfo(3),mf_town,0)) {
+				dispbottom "You can only use this command inside Towns.";
+				end;			
+			}	
+            if(.TicketID >= 1 && !countitem(.TicketID)) {
+                dispbottom "This command consumes 1x "+getitemname(.TicketID)+".";
+				end;
+            }
+			for(.@i = 0; .@i < getarraysize(RestockList); .@i++) {
+				.@amount = RestockAmountList[.@i] - countitem(RestockList[.@i]);
+				if(!storagecountitem(RestockList[.@i])  > .@amount)  {
+					dispbottom "@restocking "+getitemname(RestockList[.@i])+" failed, your item in your inventory is greater than your restock list.";
+				    close;
+				}
+				if(storagecountitem(RestockList[.@i])  >= .@amount) {
+					getitem RestockList[.@i],.@amount;
+					storagedelitem RestockList[.@i],.@amount; // successful @restock
+				} else {
+					dispbottom "@restocking "+getitemname(RestockList[.@i])+" failed, not enough in storage.";
+				}
+			}
+			break;
+		case 1:
+			if(strtolower(.@atcmd_parameters$[0]) == "list") { // get restock list
+				if(getarraysize(RestockList) == 0) {
+					dispbottom "Your restock list is empty.";
+					end;
+				}
+				dispbottom "ID"+addSpace(32)+"Name"+addSpace(32)+"Quantity";
+				dispbottom "============================================";
+				for(.@i = 0; .@i < getarraysize(RestockList); .@i++) {
+					.@item_name$ = getitemname(RestockList[.@i]);
+					dispbottom RestockList[.@i]+addSpace(30-getstrlen(.@i+""))+.@item_name$+addSpace(36-
+					getstrlen(.@item_name$))+RestockAmountList[.@i];
+				}
+			} else if(strtolower(.@atcmd_parameters$[0]) == "reset") {	// reset restock list
+				deletearray RestockList[0],getarraysize(RestockList);
+				deletearray RestockAmountList[0],getarraysize(RestockAmountList);
+				dispbottom "Your restock list have been reset.";
+			} else if(strtolower(.@atcmd_parameters$[0]) == "help" || strtolower(.@atcmd_parameters$[0]) == "h") {
+				showRestockHelp();
+			}
+			break;
+		case 2:
+			if(strtolower(.@atcmd_parameters$[0]) != "remove") {
+				showRestockHelp();
+				end;
+			}
+			.@item = atoi(.@atcmd_parameters$[1]);
+			if(getitemname(.@item) == "null") {
+				dispbottom "@restock : This item dones not exist. (id "+.@item+")";
+				end;
+			}
+			.@index = inarray(RestockList, .@item);
+			if(.@index == -1) {	//item is not in the list
+				dispbottom "@restock : This item is not on your restock list.";
+				end;
+			}
+			deletearray RestockList[.@index],1;
+			deletearray RestockAmountList[.@index],1;
+			dispbottom "@restock: item "+getitemname(.@item)+" deleted succesfully!";
+			break;
+		case 3:
+			.@item = atoi(.@atcmd_parameters$[1]);
+			.@quantity = atoi(.@atcmd_parameters$[2]);
+			if(strtolower(.@atcmd_parameters$[0]) != "add" || !.@item || !.@quantity) {
+				dispbottom "@restock : Invaild parameters.";
+				showRestockHelp();
+				end;
+			}
+			if(getitemname(.@item) == "null"){
+				dispbottom "@restock : This item does not exist. (id "+.@item+")";
+				end;
+			} else if(inarray(.allowedtypes[0],getiteminfo(.@item,2)) == -1) {
+				dispbottom "@restock : You cannot restock this type of items.";
+				end;
+			} else if(inarray(RestockList[0],.@item) >= 0) {
+				dispbottom "@restock : Item '"+getitemname(.@item)+"' (id:"+.@item+") already in list.";
+				end;
+			} else if(.@quantity < 1 || .@quantity > 500) {
+				dispbottom "@restock : Please enter valid quantity value (1 - 500)";
+				end;
+			}
+			//passed all checks
+			setarray RestockList[getarraysize(RestockList)],.@item;
+			setarray RestockAmountList[getarraysize(RestockAmountList)],.@quantity;
+			dispbottom "@restock : Item '"+getitemname(.@item)+"' (id:"+.@item+") amount "+.@quantity+" successfully added!";
+			break;
+		default:
+			showRestockHelp();
+			break;
+	}
+	end;
+}

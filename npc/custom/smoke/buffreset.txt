@@ -1,0 +1,9 @@
+-	script	ResetBuffs	-1,{
+	OnInit:
+		bindatcmd "buffreset",strnpcinfo(0) + "::OnAtcommand",99,99;
+		end;
+	OnAtcommand:
+		sc_end SC_EXPBOOST;
+		sc_end SC_ITEMBOOST;
+		dispbottom "Removido os buffs.";
+}

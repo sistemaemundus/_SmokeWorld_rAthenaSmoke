@@ -1,0 +1,233 @@
+//===== rAthena Script ======================================= 
+//= Ticket Refiner
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= [Official Conversion]
+//= Refiner that uses +5~9/+11 refine tickets to refine
+//= equipment with no chance of failure.
+//= NOTE: This NPC is currently disabled on official servers.
+//===== Additional Comments: =================================
+//= 1.0 First version. [Euphy]
+//= 1.1 Do not refine above ticket level. [Euphy]
+//============================================================
+
+// Main NPC :: safety_Ref_NPC
+//============================================================
+prontera,167,205,4	script	Mestre Ferreiro	851,{
+	disable_items;
+	setarray .@cert_weapon[0],
+		6864,	// Guarantee_Weapon_19Up
+		6875,	// Guarantee_Weapon_18Up
+		6874,	// Guarantee_Weapon_17Up
+		6873,	// Guarantee_Weapon_16Up
+		6872,	// Guarantee_Weapon_15Up
+		6871,	// Guarantee_Weapon_14Up
+		6870,	// Guarantee_Weapon_13Up
+		6584,	// Guarantee_Weapon_12Up
+		6238,	// Guarantee_Weapon_11Up
+		6228,	// Guarantee_Weapon_9Up
+		6229,	// Guarantee_Weapon_8Up
+		6230,	// Guarantee_Weapon_7Up
+		6231,	// Guarantee_Weapon_6Up
+		6456;	// Guarantee_Weapon_5Up
+	setarray .@cert_armor[0],
+		6865,	// Guarantee_Armor_19Up
+		6881,	// Guarantee_Armor_18Up
+		6880,	// Guarantee_Armor_17Up
+		6879,	// Guarantee_Armor_16Up
+		6878,	// Guarantee_Armor_15Up
+		6877,	// Guarantee_Armor_14Up
+		6876,	// Guarantee_Armor_13Up
+		6585,	// Guarantee_Armor_12Up
+		6239,	// Guarantee_Armor_11Up
+		6232,	// Guarantee_Armor_9Up
+		6233,	// Guarantee_Armor_8Up
+		6234,	// Guarantee_Armor_7Up
+		6235,	// Guarantee_Armor_6Up
+		6457;	// Guarantee_Armor_5Up
+	setarray .@cert_level[0],19,18,17,16,15,14,13,12,11,9,8,7,6,5;
+	.@size_cert = getarraysize(.@cert_weapon);
+
+	for ( .@i = 0; .@i < .@size_cert; ++.@i ) {
+		if (countitem(.@cert_weapon[.@i]) > 0 || countitem(.@cert_armor[.@i]) > 0) {
+			.@check = 1;
+			break;
+		}
+	}
+
+	if (.@check == 0) {
+		mes "[Mestre Ferreiro]";
+		mes "Olá!";
+		mes "Como você está?";
+		mes "Eu sou um especialista";
+		mes "para refinar itens,";
+		mes "mas não trabalho mais com isso.";
+		next;
+		switch(select("Ok, até mais!.:Parece meio suspeito...")) {
+		case 1:
+			mes "[Mestre Ferreiro]";
+			mes "Calma lá, aventureiro!";
+			close;
+		case 2:
+			mes "[Mestre Ferreiro]";
+			mes "Na verdade, às vezes ofereço serviços refinados para aventureiros com ^006400Refine Ticket^000000...";
+			mes "Tchau tchau~!";
+			close;
+		}
+	}
+	emotion ET_SURPRISE;
+	mes "[Mestre Ferreiro]";
+	mes "Saudações!";
+	mes "Eu posso refinar um item até o ^006400mesmo nível do seu bilhete^000000.";
+	mes "Você não precisa se preocupar! Não há chance de quebrar seu item.";
+	next;
+	if(select("Volto mais tarde.:Refinar item com ticket.") == 1) {
+		mes "[Mestre Ferreiro]";
+		mes "Okay.";
+		mes "Você pode voltar mais tarde.";
+		close;
+	}
+	mes "[Mestre Ferreiro]";
+	mes "Qual equipamento você gostaria de refinar?";
+	next;
+	setarray .@position$[1],"Head upper","Armor","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head middle","Head lower";
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+	for ( .@i = 1; .@i <= 10; ++.@i )
+		.@menu$ += (getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : .@position$[.@i] + "- [Empty]") + ":";
+
+	.@part = .@indices[ select(.@menu$) ];
+	if (!getequipisequiped(.@part)) {
+		mes "[Mestre Ferreiro]";
+		mes "Você deve equipar o item que deseja refinar.";
+		close;
+	}
+	if (!getequipisenableref(.@part)) {
+		emotion ET_OTL;
+		mes "[Mestre Ferreiro]";
+		mes "Oh, me desculpe.";
+		mes "Este item é impossível de refinar.";
+		close;
+	}
+	.@refineitemid = getequipid(.@part); // save id of the item
+	.@refinerycnt = getequiprefinerycnt(.@part); //save refinery count
+	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	.@itemtype = getiteminfo( .@refineitemid, ITEMINFO_TYPE );
+	if( .@itemtype == IT_WEAPON ){
+		switch( getequipweaponlv( .@part ) ){
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+				copyarray .@tickets[0], .@cert_weapon[0], .@size_cert;
+				.@type$ = "Weapon";
+				break;
+			default:
+				// TODO:
+				close;
+		}
+	}else if( .@itemtype == IT_ARMOR ){
+		switch( getequiparmorlv( .@part ) ){
+			case 1:
+				copyarray .@tickets[0], .@cert_armor[0], .@size_cert;
+				.@type$ = "Armor";
+				break;
+			default:
+				// TODO:
+				close;
+		}
+	}else{
+		// TODO:
+		close;
+	}
+	.@check = 0;
+	for ( .@i = 0; .@i < .@size_cert; ++.@i ) {
+		if (countitem(.@tickets[.@i]) > 0) {
+			.@check = 1;
+			break;
+		}
+	}
+	if (.@check == 0) {
+		emotion ET_THINK;
+		mes "[Mestre Ferreiro]";
+		mes "Se você quiser refinar isso ^006400"+.@type$+"^000000, por favor, venha junto com ^006400"+.@type$+" Refine Ticket^000000.";
+		mes "Até mais!";
+		close;
+	}
+	mes "[Mestre Ferreiro]";
+	mes "Por favor, escolha qual ^006400"+.@type$+" Refine Ticket^000000 você quer usar.";
+	next;
+	.@menu$ = "";
+	for ( .@i = 0; .@i < .@size_cert; ++.@i )
+		.@menu$ += getitemname(.@tickets[.@i]) + ":";
+	.@select = select(.@menu$)-1;
+	.@ticket_lv = .@cert_level[.@select];
+	.@ticket_id = .@tickets[.@select];
+
+	if (countitem(.@ticket_id) == 0) {
+		emotion ET_QUESTION;
+		mes "[Mestre Ferreiro]";
+		mes getitemname(.@ticket_id)+" não está em seu inventário. Você colocou no seu depósito?";
+		mes "Por favor cheque novamente.";
+		mes "Até mais!";
+		close;
+	}
+	if (getequiprefinerycnt(.@part) >= .@ticket_lv) {
+		emotion ET_PROFUSELY_SWEAT;
+		mes "[Mestre Ferreiro]";
+		mes "^8B4513Este item já está refinado tanto quanto sua ação.^000000";
+		mes "Por favor, venha com um item refinado menos do que o seu bilhete.";
+		close;
+	}
+	mes "[Mestre Ferreiro]";
+	mes "Vou refinar ^006400"+getequipname(.@part)+"^8B4513 até o +"+.@ticket_lv+"  nível^000000 com ^006400"+getitemname(.@ticket_id)+"^000000.";
+	mes "Posso mandar bala?";
+	next;
+	if(select("Não.:Sim.") == 1) {
+		emotion ET_THINK;
+		mes "[Mestre Ferreiro]";
+		mes "Oh, mudou de idéia?!";
+		mes "Ok.";
+		mes "Pode voltar de novo depois.";
+		close;
+	}
+	mes "[Mestre Ferreiro]";
+	mes "Boa.";
+	mes "Como você desejar!";
+	mes "Eu tenho minha própria maneira especial de refinar...";
+	mes ".......ka boom!";
+	specialeffect EF_SUI_EXPLOSION;
+	if (countitem(.@ticket_id) < 1) {
+		next;
+		mes "Error!";
+		mes "Please report this.";
+		close;
+	}
+	delitem .@ticket_id,1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@refineitemid) ||
+		callfunc("F_IsEquipRefineHack", .@part, .@refinerycnt) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3])) {
+		mes "[Mestre Ferreiro]";
+		emotion ET_FRET;
+		mes "Espere um segundo...";
+		mes "Você acha que eu sou estúpido?!";
+		mes "Você trocou o item enquanto eu não estava olhando! Saia daqui!";
+		close;
+	}
+	successrefitem .@part, .@ticket_lv - getequiprefinerycnt(.@part);
+	next;
+	emotion ET_DELIGHT;
+	mes "[Mestre Ferreiro]";
+	mes "Tudo bem, aqui está~";
+	mes "Bem, ^0000FF"+strcharinfo(0)+"^000000!";
+	mes "Parabéns pelo seu brilho"+.@type$+".";
+	mes "Você parece ÓTIMO";
+	mes "Até a próxima~!";
+	close;
+}
+

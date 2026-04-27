@@ -1,0 +1,23 @@
+//===== eAthena Script ======================================================================
+//= WOE STATUS check
+//===== By: =================================================================================
+//= swapnil mhaske
+//===== Current Version: ====================================================================
+//= 1.0
+//===== Compatible With: ====================================================================
+//= Any eAthena Version
+//===========================================================================================
+-	script	OnAgitStart	-1,{
+OnAgitStart:
+     query_sql "UPDATE woe_status SET status = 1";
+	 end;
+OnAgitEnd:
+	 query_sql "UPDATE woe_status SET status = 0";
+	 end;
+OnInit:
+        if(agitcheck()==1)
+                query_sql "UPDATE woe_status SET status = 1";
+        else
+                query_sql "UPDATE woe_status SET status = 0";
+		end;
+}

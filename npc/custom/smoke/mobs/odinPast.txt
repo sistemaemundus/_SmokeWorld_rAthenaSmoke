@@ -1,0 +1,10 @@
+//===== rAthena Script
+//= Spawn de Mobs de odin_past
+odin_past,0,0,0,0	monster	Angelgolt	20604,40,5000,0,0
+odin_past,0,0,0,0	monster	Angelgolt	20605,60,5000,0,0
+odin_past,0,0,0,0	monster	Spectral Plasma	20609,5,60000,0,0
+odin_past,0,0,0,0	monster	Arch Plasma	20608,5,60000,0,0
+odin_past,0,0,0,0	monster	Holy Frus	20606,45,5000,0,0
+odin_past,0,0,0,0	monster	Holy Skogul	20607,45,5000,0,0
+odin_past,0,0,0,0	boss_monster	Valkyrie Reginleif	20610,1,60000,0,0
+odin_past,0,0,0,0	boss_monster	Valkyrie Ingrid	20611,1,60000,0,0

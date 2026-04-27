@@ -1,0 +1,3035 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Database
+###########################################################################
+#
+# Item Settings
+#
+###########################################################################
+# - Id                      Item ID.
+#   AegisName               Server name to reference the item in scripts and lookups, should use no spaces.
+#   Name                    Name in English for displaying as output.
+#   Type                    Item type. (Default: Etc)
+#   SubType                 Weapon, Ammo or Card type. (Default: 0)
+#   Buy                     Buying price. When not specified, becomes double the sell price. (Default: 0)
+#   Sell                    Selling price. When not specified, becomes half the buy price. (Default: 0)
+#   Weight                  Item weight. Each 10 is 1 weight. (Default: 0)
+#   Attack                  Weapon's attack. (Default: 0)
+#   MagicAttack             Weapon's magic attack. (Default: 0)
+#   Defense                 Armor's defense. (Default: 0)
+#   Range                   Weapon's attack range. (Default: 0)
+#   Slots                   Available slots in item. (Default: 0)
+#   Jobs                    Jobs that can equip the item. (Map default is 'All: true')
+#   Classes                 Upper class types that can equip the item. (Map default is 'All: true')
+#   Gender                  Gender that can equip the item. (Default: Both)
+#   Locations               Equipment's placement. (Default: None)
+#   WeaponLevel             Weapon level. (Default: 1 for Weapons)
+#   ArmorLevel              Armor level. (Default: 1 for Armors)
+#   EquipLevelMin           Minimum required level to equip. (Default: 0)
+#   EquipLevelMax           Maximum level that can equip. (Default: 0)
+#   Refineable              If the item can be refined. (Default: false)
+#   Gradable                If the item can be graded. (Default: false)
+#   View                    View sprite of an item. (Default: 0)
+#   AliasName               Another item's AegisName that will be sent to the client instead of this item's AegisName. (Default: null)
+#   Flags:                  Item flags. (Default: null)
+#     BuyingStore           If the item is available for Buyingstores. (Default: false)
+#     DeadBranch            If the item is a Dead Branch. (Default: false)
+#     Container             If the item is part of a container. (Default: false)
+#     UniqueId              If the item is a unique stack. (Default: false)
+#     BindOnEquip           If the item is bound to the character upon equipping. (Default: false)
+#     DropAnnounce          If the item has a special announcement to self on drop. (Default: false)
+#     NoConsume             If the item is consumed on use. (Default: false)
+#     DropEffect            If the item has a special effect on the ground when dropped by a monster. (Default: None)
+#   Delay:                  Item use delay. (Default: null)
+#     Duration              Duration of delay in seconds.
+#     Status                Status Change used to track delay. (Default: None)
+#   Stack:                  Item stack amount. (Default: null)
+#     Amount                Maximum amount that can be stacked.
+#     Inventory             If the stack is applied to player's inventory. (Default: true)
+#     Cart                  If the stack is applied to the player's cart. (Default: false)
+#     Storage               If the stack is applied to the player's storage. (Default: false)
+#     GuildStorage          If the stack is applied to the player's guild storage. (Default: false)
+#   NoUse:                  Conditions when the item is unusable. (Default: null)
+#     Override              Group level to override these conditions. (Default: 100)
+#     Sitting               If the item can not be used while sitting. (Default: false)
+#   Trade:                  Trade restrictions. (Default: null)
+#     Override              Group level to override these conditions. (Default: 100)
+#     NoDrop                If the item can not be dropped. (Default: false)
+#     NoTrade               If the item can not be traded. (Default: false)
+#     TradePartner          If the item can not be traded to the player's partner. (Default: false)
+#     NoSell                If the item can not be sold. (Default: false)
+#     NoCart                If the item can not be put in a cart. (Default: false)
+#     NoStorage             If the item can not be put in a storage. (Default: false)
+#     NoGuildStorage        If the item can not be put in a guild storage. (Default: false)
+#     NoMail                If the item can not be put in a mail. (Default: false)
+#     NoAuction             If the item can not be put in an auction. (Default: false)
+#   Script                  Script to execute when the item is used/equipped. (Default: null)
+#   EquipScript             Script to execute when the item is equipped. (Default: null)
+#   UnEquipScript           Script to execute when the item is unequipped or when a rental item expires. (Default: null)
+###########################################################################
+
+Header:
+  Type: ITEM_DB
+  Version: 3
+
+#Body:
+# THQ Quest Items
+#=============================================================
+#  - Id: 1998
+#    AegisName: Jeramiah's_Jur
+#    Name: Jeramiah's Jur
+#    Type: Etc
+#    Sell: 10
+#    Weight: 10
+#    AliasName: Jur
+#  - Id: 1999
+#    AegisName: Zed's_Staff
+#    Name: Zed's Staff
+#    Type: Etc
+#    Sell: 10
+#    Weight: 10
+#    AliasName: Staff_Of_Soul
+#  - Id: 7950
+#    AegisName: THG_Membership
+#    Name: THG Membership
+#    Type: Etc
+#    Sell: 10
+#    Weight: 10
+#    AliasName: Foolishness_Of_Blind
+#  - Id: 7951
+#    AegisName: Gold_Tulip
+#    Name: Token Bag
+#    Type: Etc
+#    Sell: 10
+#    Weight: 10
+#    AliasName: Leather_Bag_Of_Infinity
+
+# Official Event Items that had their Effects removed after the event was completed
+#=============================================================
+#  - Id: 585
+#    AegisName: Wurst
+#    Name: Brusti
+#    Type: Delayconsume
+#    Buy: 2
+#    Weight: 40
+#    Script: |
+#      itemheal rand(15,20),0; itemskill "PR_MAGNIFICAT",3;
+#  - Id: 679
+#    AegisName: Gold_Pill
+#    Name: Pilule
+#    Type: Healing
+#    Buy: 5000
+#    Weight: 300
+#    Script: |
+#      percentheal 50,50;
+#  - Id: 2681
+#    AegisName: Republic_Ring
+#    Name: Republic Anniversary Ring
+#    Type: Armor
+#    Buy: 20
+#    Weight: 100
+#    Locations:
+#      Right_Accessory: true
+#      Left_Accessory: true
+#    Script: |
+#      bonus bAllStats,3;
+#  - Id: 5134
+#    AegisName: Pumpkin_Hat
+#    Name: Pumpkin-Head
+#    Type: Armor
+#    Buy: 20
+#    Weight: 200
+#    Defense: 2
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 206
+#    Script: |
+#      bonus2 bSubRace,RC_Demon,5;
+#  - Id: 5136
+#    AegisName: Santa's_Hat_
+#    Name: Louise's Santa Hat
+#    Type: Armor
+#    Buy: 20
+#    Weight: 100
+#    Defense: 3
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 20
+#    Script: |
+#      bonus bMdef,1; bonus bLuk,1; bonus3 bAutoSpellWhenHit,"AL_HEAL",3,50; bonus3 bAutoSpellWhenHit,"AL_BLESSING",10,50;
+#  - Id: 5145
+#    AegisName: Carnival_Joker_Jester
+#    Name: Carnival Jester
+#    Type: Armor
+#    Buy: 10
+#    Weight: 100
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 89
+#    Script: |
+#      bonus bAllStats,3;
+#  - Id: 5147
+#    AegisName: Baseball_Cap
+#    Name: Baseball Cap
+#    Type: Armor
+#    Weight: 200
+#    Defense: 3
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 216
+#    Script: |
+#      bonus2 bExpAddRace,RC_Boss,50; bonus2 bExpAddRace,RC_NonBoss,50;
+#  - Id: 5201
+#    AegisName: Party_Hat_B
+#    Name: 2nd Anniversary Party Hat
+#    Type: Armor
+#    Buy: 20
+#    Weight: 300
+#    Defense: 3
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 144
+#    Script: |
+#      bonus bAllStats,3;
+#  - Id: 5202
+#    AegisName: Pumpkin_Hat_
+#    Name: Pumpkin Hat
+#    Type: Armor
+#    Buy: 20
+#    Weight: 200
+#    Defense: 2
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 206
+#    Script: |
+#      bonus bAllStats,2; bonus2 bSubRace,RC_Demon,5; bonus3 bAddMonsterDropItem,529,RC_DemiHuman,1500;
+#  - Id: 5204
+#    AegisName: Event_Pierrot_Nose
+#    Name: Rudolf's Red Nose
+#    Type: Armor
+#    Buy: 20
+#    Weight: 100
+#    Locations:
+#      Head_Low: true
+#    View: 49
+#    Script: |
+#      bonus2 bResEff,Eff_Blind,3000; bonus2 bAddMonsterDropItem,12130,30;
+#  - Id: 5264
+#    AegisName: Aussie_Flag_Hat
+#    Name: Australian Flag Hat
+#    Type: Armor
+#    Buy: 20
+#    Weight: 500
+#    Defense: 4
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 304
+#    Script: |
+#      bonus bAllStats,2;
+#  - Id: 5356
+#    AegisName: Pumpkin_Hat_H
+#    Name: Pumpkin Hat
+#    Type: Armor
+#    Buy: 20
+#    Weight: 200
+#    Defense: 2
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 206
+#    Script: |
+#      bonus bAllStats,2; bonus2 bSubRace,RC_Demon,5; bonus2 bMagicAddRace,RC_Demon,5;
+#  - Id: 5384
+#    AegisName: Santa_Hat_1
+#    Name: Twin Pompom By JB
+#    Type: Armor
+#    Buy: 20
+#    Weight: 200
+#    Defense: 2
+#    Slots: 1
+#    Locations:
+#      Head_Top: true
+#    EquipLevelMin: 20
+#    Refineable: true
+#    View: 390
+#    Script: |
+#      bonus bLuk,3; bonus2 bResEff,Eff_Curse,2000; bonus bVariableCastrate,-2; bonus bAspdRate,4; bonus2 bAddMonsterDropItem,539,100; bonus2 bAddMonsterDropItem,529,200; bonus2 bAddMonsterDropItem,530,200; autobonus "{ bonus bCritical,10; }",10,5000;
+#  - Id: 5811
+#    AegisName: Santa_Beard
+#    Name: Santa Beard
+#    Type: Armor
+#    Buy: 20
+#    Weight: 100
+#    Defense: 5
+#    Locations:
+#      Head_Low: true
+#    View: 25
+#    Script: |
+#      bonus2 bSubRace,RC_Brute,5; bonus2 bSubRace,RC_Player_Doram,5;
+#  - Id: 11702
+#    AegisName: Moon_Cookie
+#    Name: Moon Cookie
+#    Type: Delayconsume
+#    Weight: 10
+#    Script: |
+#      sc_end SC_POISON; sc_end SC_SILENCE; sc_end SC_BLIND; sc_end SC_CONFUSION; sc_end SC_CURSE; sc_end SC_HALLUCINATION; itemskill "AL_BLESSING",7;
+#  - Id: 12131
+#    AegisName: Lucky_Potion
+#    Name: Lucky Potion
+#    Type: Healing
+#    Buy: 2
+#    Weight: 100
+#    Script: |
+#      sc_start SC_LUKFOOD,180000,15;
+#  - Id: 12143
+#    AegisName: Red_Can
+#    Name: Red Can
+#    Type: Usable
+#    Buy: 50000
+#    Weight: 300
+#    Script: |
+#      percentheal 25,25;
+
+# Event effect: Summon monster? Probably Rice_Cake. x_x
+#=============================================================
+#  - Id: 12199
+#    AegisName: Rice_Scroll
+#    Name: Rice Scroll
+#    Type: Usable
+#  - Id: 12200
+#    AegisName: Event_Cake
+#    Name: Event Cake
+#    Type: Usable
+#    Buy: 20
+#    Weight: 50
+#    Script: |
+#      itemskill "PR_MAGNIFICAT",3;
+#  - Id: 12238
+#    AegisName: New_Year_Rice_Cake_1
+#    Name: New Year Rice Cake
+#    Type: Healing
+#    Buy: 20
+#    Weight: 100
+#    Script: |
+#      percentheal 20,15; sc_start SC_STRFOOD,1200000,3; sc_start SC_INTFOOD,1200000,3; sc_start SC_LUKFOOD,1200000,3; sc_start SC_SPEEDUP1,5000,0;
+#  - Id: 12239
+#    AegisName: New_Year_Rice_Cake_2
+#    Name: New Year Rice Cake
+#    Type: Healing
+#    Buy: 20
+#    Weight: 100
+#    Script: |
+#      percentheal 20,15; sc_start SC_DEXFOOD,1200000,3; sc_start SC_AGIFOOD,1200000,3; sc_start SC_VITFOOD,1200000,3; sc_start SC_SPEEDUP1,5000,0;
+
+# iRO St. Patrick's Day Event 2008
+#=============================================================
+#  - Id: 7915
+#    AegisName: Copper_Coin_
+#    Name: Bronze Coin
+#    Type: Etc
+#    Weight: 10
+#    AliasName: Copper_Coin
+#  - Id: 7916
+#    AegisName: Silver_Coin_
+#    Name: Silver Coin
+#    Type: Etc
+#    Weight: 10
+#    AliasName: Silver_Coin
+#  - Id: 12715
+#    AegisName: Black_Treasure_Box
+#    Name: Black Treasure Chest
+#    Type: Usable
+#    Weight: 200
+#    AliasName: Treasure_Box_
+#    Script: |
+#      callfunc "F_08stpattyseventbox";
+
+# iRO Valentine's Day Event 2009
+#=============================================================
+#  - Id: 5817
+#    AegisName: Valentine_Pledge
+#    Name: Valentine's Emblem
+#    Type: Armor
+#    Buy: 10
+#    Defense: 3
+#    Locations:
+#      Right_Accessory: true
+#      Left_Accessory: true
+#    Script: |
+#      bonus bAtkRate,3; bonus bMatkRate,3; bonus bAllStats,2; bonus bFlee,10; bonus bAspd,1; bonus bMdef,3; bonus2 bSkillAtk,"AL_HEAL",10; bonus2 bSkillHeal,"AL_HEAL",10; bonus2 bSkillHeal,"AM_POTIONPITCHER",10; bonus2 bAddItemGroupHealRate,IG_Potion,10;
+#  - Id: 7946
+#    AegisName: Gold_Ring_Of_Valentine
+#    Name: Gold Ring Of Valentine
+#    Type: Etc
+#    Buy: 10
+#  - Id: 7947
+#    AegisName: Silver_Ring_Of_Valentine
+#    Name: Silver Ring Of Valentine
+#    Type: Etc
+#    Buy: 10
+#  - Id: 7948
+#    AegisName: Box
+#    Name: Box
+#    Type: Etc
+#    Buy: 10
+#    Weight: 10
+#  - Id: 12742
+#    AegisName: Valentine_Gift_Box_M
+#    Name: Valentine Gift Box
+#    Type: Usable
+#    Buy: 10
+#    Script: |
+#      getitem 7946,1;
+#  - Id: 12743
+#    AegisName: Valentine_Gift_Box_F
+#    Name: Valentine Gift Box
+#    Type: Usable
+#    Buy: 10
+#    Script: |
+#      getitem 7947,1;
+#  - Id: 12744
+#    AegisName: Chocolate_Box
+#    Name: Chocolate Box
+#    Type: Usable
+#    Buy: 10
+#    Script: |
+#      getitem 558,1;
+#  - Id: 14466
+#    AegisName: Valentine's_Emblem_Box
+#    Name: Valentine's Emblem Box
+#    Type: Usable
+#    Buy: 10
+#    Script: |
+#      getitem 5817,1;
+
+# iRO Halloween Event 2009
+#=============================================================
+#  - Id: 5668
+#    AegisName: Weird_Pumpkin_Hat
+#    Name: Weird Pumpkin Hat
+#    Type: Armor
+#    Buy: 20
+#    Defense: 5
+#    Locations:
+#      Head_Top: true
+#    Refineable: true
+#    View: 206
+#    Script: |
+#      bonus bMdef,5; bonus2 bAddMonsterDropItem,12192,2500;
+#  - Id: 6298
+#    AegisName: Pumpkin_Head_Crushed
+#    Name: Crushed Pumpkin
+#    Type: Etc
+#  - Id: 6299
+#    AegisName: Worn_Cloth_Piece
+#    Name: Worn Fabric
+#    Type: Etc
+
+# Old Tuxedo and Wedding Dress, will display the outfit when worn.
+#==================================================================
+#  - Id: 2338
+#    AegisName: Wedding_Dress
+#    Name: Wedding Dress
+#    Type: Armor
+#    Buy: 43000
+#    Weight: 500
+#    Jobs:
+#      All: true
+#      Novice: false
+#    Gender: Female
+#    Locations:
+#      Armor: true
+#    Refineable: true
+#    EquipScript: |
+#      sc_start SC_WEDDING,INFINITE_TICK,0;
+#    UnEquipScript: |
+#      sc_end SC_WEDDING;
+#  - Id: 7170
+#    AegisName: Tuxedo
+#    Name: Tuxedo
+#    Type: Armor
+#    Buy: 43000
+#    Weight: 10
+#    Jobs:
+#      All: true
+#      Novice: false
+#    Gender: Male
+#    Locations:
+#      Armor: true
+#    ArmorLevel: 1
+#    Refineable: true
+#    EquipScript: |
+#      sc_start SC_WEDDING,INFINITE_TICK,0;
+#    UnEquipScript: |
+#      sc_end SC_WEDDING;
+
+# Non-kRO Eden Group Mark effect
+#=============================================================
+#  - Id: 22508
+#    AegisName: Para_Team_Mark_
+#    Name: Eden Group Mark
+#    Type: Delayconsume
+#    Script: |
+#      unitskilluseid getcharid(3),"AL_TELEPORT",3;
+
+# Gender restrictions that were removed on official servers
+#=============================================================
+#  - Id: 2206
+#    Gender: Female
+#  - Id: 2208
+#    Gender: Female
+#  - Id: 2209
+#    Gender: Female
+#  - Id: 2234
+#    Gender: Female
+#  - Id: 2235
+#    Gender: Male
+#  - Id: 2407
+#    Gender: Female
+#  - Id: 2415
+#    Gender: Female
+#  - Id: 2494
+#    Gender: Female
+#  - Id: 5143
+#    Gender: Male
+#  - Id: 5164
+#    Gender: Female
+#  - Id: 5165
+#    Gender: Male
+#  - Id: 5191
+#    Gender: Female
+#  - Id: 5192
+#    Gender: Female
+#  - Id: 5193
+#    Gender: Female
+#  - Id: 5194
+#    Gender: Female
+#  - Id: 5195
+#    Gender: Female
+#  - Id: 5196
+#    Gender: Female
+#  - Id: 5197
+#    Gender: Female
+#  - Id: 5221
+#    Gender: Female
+#  - Id: 5354
+#    Gender: Male
+#  - Id: 5355
+#    Gender: Female
+#  - Id: 5400
+#    Gender: Female
+#  - Id: 5681
+#    Gender: Female
+#  - Id: 5735
+#    Gender: Female
+#==============================================
+#= ITEMs SmokeWorld
+#= Criado por Emundus
+#==============================================
+# Adicionado 04/06/2025, Caixas VIP
+Body:
+  - Id: 758
+    AegisName: caixaVip7
+    Name: Caixa VIP 7d
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      rentitem 601,604800;
+      rentitem 840097,604800;
+      if (vip_status(VIP_STATUS_ACTIVE)) {
+        message strcharinfo(0),"VocÃª jÃ¡ Ã© VIP!";
+        } else {
+            atcommand "@vip +7d "+strcharinfo(0)+"";
+        }
+  - Id: 759
+    AegisName: caixaVip15
+    Name: Caixa VIP 15d
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      rentitem 601,1296000;
+      rentitem 840097,1296000;
+      if (vip_status(VIP_STATUS_ACTIVE)) {
+        message strcharinfo(0),"VocÃª jÃ¡ Ã© VIP!";
+        } else {
+            atcommand "@vip +15d "+strcharinfo(0)+"";
+        }
+  - Id: 760
+    AegisName: caixaVip30
+    Name: Caixa VIP 30d
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      rentitem 601,2592000;
+      rentitem 840097,2592000;
+      if (vip_status(VIP_STATUS_ACTIVE)) {
+        message strcharinfo(0),"VocÃª jÃ¡ Ã© VIP!";
+        } else {
+            atcommand "@vip +30d "+strcharinfo(0)+"";
+        }
+# =====================================================
+# SMOKE WORLD â€“ GEAR PROGRESSION - 840055 ~ 840066
+# =====================================================
+# GODLIKE SET (50, 65 e 80)
+# =====================================================
+
+  - Id: 840055
+    AegisName: smw_godlike_armor_t1
+    Name: Armadura Smoke GodLike [Tier I]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Armor: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bAtk,40+(.@scale*1);
+      bonus bMatk,40+(.@scale*1);
+      bonus bMaxHPrate,3;
+      bonus bAtkRate,8+((.@scale*2)/10);
+      bonus bMatkRate,8+((.@scale*2)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840071
+    AegisName: smw_godlike_armor_t2
+    Name: Armadura Smoke GodLike [Tier II]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Armor: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bAtk,70+(.@scale*2);
+      bonus bMatk,70+(.@scale*2);
+      bonus bMaxHPrate,4;
+      bonus bAtkRate,12+(.@scale*(35/100));
+      bonus bMatkRate,12+(.@scale*(35/100));
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840072
+    AegisName: smw_godlike_armor_t3
+    Name: Armadura Smoke GodLike [Tier III]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Armor: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bAtk,100+((.@scale*25)/10);
+      bonus bMatk,100+((.@scale*25)/10);
+      bonus bMaxHPrate,5;
+      bonus bAtkRate,18+((.@scale*5)/10);
+      bonus bMatkRate,18+((.@scale*5)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840056
+    AegisName: smw_godlike_mantle_t1
+    Name: Manto Smoke GodLike [Tier I]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Garment: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bDef,60;
+      bonus bMdef,60;
+      bonus2 bAddRace,Class_Boss,4+((.@scale*15)/100);
+      bonus bRes,((.@scale*15)/100);
+      bonus bMres,((.@scale*15)/100);
+  - Id: 840073
+    AegisName: smw_godlike_mantle_t2
+    Name: Manto Smoke GodLike [Tier II]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Garment: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bDef,90;
+      bonus bMdef,90;
+      bonus2 bAddRace,Class_Boss,6+((.@scale*25)/100);
+      bonus bRes,((.@scale*25)/100);
+      bonus bMres,((.@scale*25)/100);
+  - Id: 840074
+    AegisName: smw_godlike_mantle_t3
+    Name: Manto Smoke GodLike [Tier III]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Garment: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bDef,110;
+      bonus bMdef,110;
+      bonus2 bAddRace,Class_Boss,8+((.@scale*35)/100);
+      bonus bRes,((.@scale*35)/100);
+      bonus bMres,((.@scale*35)/100);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840057
+    AegisName: smw_godlike_boots_t1
+    Name: Botas Smoke GodLike [Tier II]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Shoes: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bAtk,35+(.@scale*1);
+      bonus bMatk,35+(.@scale*1);
+      bonus bMaxSPrate,3;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*15)/100);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*15)/100);
+  - Id: 840075
+    AegisName: smw_godlike_boots_t2
+    Name: Botas Smoke GodLike [Tier II]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Shoes: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bAtk,60+((.@scale*15)/10);
+      bonus bMatk,60+((.@scale*15)/10);
+      bonus bMaxSPrate,4;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*25)/100);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*25)/100);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840076
+    AegisName: smw_godlike_boots_t3
+    Name: Botas Smoke GodLike [Tier III]
+    Type: Armor
+    ArmorLevel: 3
+    Locations:
+      Shoes: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>100).@lv=100;
+      .@scale=.@lv-50;
+      bonus bAtk,85+(.@scale*2);
+      bonus bMatk,85+(.@scale*2);
+      bonus bMaxSPrate,5;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*35)/100);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*35)/100);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+# =====================================================
+# PHOENIX SET (100, 115, 130)
+# =====================================================
+  - Id: 840058
+    AegisName: smw_phoenix_armor_t1
+    Name: Armadura Smoke Phoenix [Tier I]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Armor: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bAtk,110+(.@scale*2);
+      bonus bMatk,110+(.@scale*2);
+      bonus bMaxHPrate,8;
+      bonus bAtkRate,18+((.@scale*5)/10);
+      bonus bMatkRate,18+((.@scale*5)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840059
+    AegisName: smw_phoenix_mantle_t1
+    Name: Manto Smoke Phoenix [Tier I]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Garment: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bDef,120+(.@scale*2);
+      bonus bMdef,120+(.@scale*2);
+      bonus2 bAddRace,Class_Boss,10+((.@scale*3)/10);
+      bonus bRes,((.@scale*25)/100);
+      bonus bMres,((.@scale*25)/100);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840060
+    AegisName: smw_phoenix_boots_t1
+    Name: Botas Smoke Phoenix [Tier I]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Shoes: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bAtk,90+(.@scale*2);
+      bonus bMatk,90+(.@scale*2);
+      bonus bMaxSPrate,5;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*3)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*3)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840077
+    AegisName: smw_phoenix_armor_t2
+    Name: Armadura Smoke Phoenix [Tier II]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Armor: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bAtk,150+(.@scale*3);
+      bonus bMatk,150+(.@scale*3);
+      bonus bMaxHPrate,10;
+      bonus bAtkRate,25+((.@scale*7)/10);
+      bonus bMatkRate,25+((.@scale*7)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840078
+    AegisName: smw_phoenix_mantle_t2
+    Name: Manto Smoke Phoenix [Tier II]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Garment: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bDef,150+(.@scale*3);
+      bonus bMdef,150+(.@scale*3);
+      bonus2 bAddRace,Class_Boss,15+((.@scale*45)/100);
+      bonus bRes,((.@scale*35)/100);
+      bonus bMres,((.@scale*35)/100);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840079
+    AegisName: smw_phoenix_boots_t2
+    Name: Botas Smoke Phoenix [Tier II]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Shoes: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bAtk,120+(.@scale*3);
+      bonus bMatk,120+(.@scale*3);
+      bonus bMaxSPrate,7;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*5)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*5)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840080
+    AegisName: smw_phoenix_armor_t3
+    Name: Armadura Smoke Phoenix [Tier III]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Armor: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bAtk,180+(.@scale*4);
+      bonus bMatk,180+(.@scale*4);
+      bonus bMaxHPrate,12;
+      bonus bAtkRate,32+(.@scale*1);
+      bonus bMatkRate,32+(.@scale*1);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840081
+    AegisName: smw_phoenix_mantle_t3
+    Name: Manto Smoke Phoenix [Tier III]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Garment: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bDef,170+(.@scale*4);
+      bonus bMdef,170+(.@scale*4);
+      bonus2 bAddRace,Class_Boss,18+((.@scale*6)/10);
+      bonus bRes,((.@scale*45)/100);
+      bonus bMres,((.@scale*45)/100);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840082
+    AegisName: smw_phoenix_boots_t3
+    Name: Botas Smoke Phoenix [Tier III]
+    Type: Armor
+    ArmorLevel: 4
+    Locations:
+      Shoes: true
+    EquipLevelMin: 100
+    Slots: 1
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>150).@lv=150;
+      .@scale=.@lv-100;
+      bonus bAtk,150+(.@scale*4);
+      bonus bMatk,150+(.@scale*4);
+      bonus bMaxSPrate,8;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*7)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*7)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+# =====================================================
+# AZUR SET (150, 165, 180)
+# =====================================================
+  - Id: 840061
+    AegisName: smw_azur_armor_t1
+    Name: Armadura Smoke Azur [Tier I]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Armor: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bAtk,180+(.@scale*3);
+      bonus bMatk,180+(.@scale*3);
+      bonus bMaxHPrate,12;
+      bonus bAtkRate,30+((.@scale*7)/10);
+      bonus bMatkRate,30+((.@scale*7)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840062
+    AegisName: smw_azur_mantle_t1
+    Name: Manto Smoke Azur [Tier I]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Garment: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv > 200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bDef,180+(.@scale*3);
+      bonus bMdef,180+(.@scale*3);
+      bonus2 bAddRace,Class_Boss,18+((.@scale*5)/10);
+      bonus bRes,((.@scale*4)/10);
+      bonus bMres,((.@scale*4)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840063
+    AegisName: smw_azur_boots_t1
+    Name: Botas Smoke Azur [Tier I]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bAtk,150+(.@scale*3);
+      bonus bMatk,150+(.@scale*3);
+      bonus bMaxSPrate,7;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*5)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*5)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840083
+    AegisName: smw_azur_armor_t2
+    Name: Armadura Smoke Azur [Tier II]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Armor: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bAtk,220+(.@scale*4);
+      bonus bMatk,220+(.@scale*4);
+      bonus bMaxHPrate,14;
+      bonus bAtkRate,40+(.@scale*1);
+      bonus bMatkRate,40+(.@scale*1);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840084
+    AegisName: smw_azur_mantle_t2
+    Name: Manto Smoke Azur [Tier II]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Garment: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv > 200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bDef,220+(.@scale*4);
+      bonus bMdef,220+(.@scale*4);
+      bonus2 bAddRace,Class_Boss,24+((.@scale*7)/10);
+      bonus bRes,((.@scale*6)/10);
+      bonus bMres,((.@scale*6)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840085
+    AegisName: smw_azur_boots_t2
+    Name: Botas Smoke Azur [Tier II]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bAtk,180+(.@scale*4);
+      bonus bMatk,180+(.@scale*4);
+      bonus bMaxSPrate,9;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*7)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*7)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840086
+    AegisName: smw_azur_armor_t3
+    Name: Armadura Smoke Azur [Tier III]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Armor: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bAtk,250+(.@scale*5);
+      bonus bMatk,250+(.@scale*5);
+      bonus bMaxHPrate,16;
+      bonus bAtkRate,48+((.@scale*13)/10);
+      bonus bMatkRate,48+((.@scale*13)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840087
+    AegisName: smw_azur_mantle_t3
+    Name: Manto Smoke Azur [Tier III]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Garment: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv > 200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bDef,250+(.@scale*5);
+      bonus bMdef,250+(.@scale*5);
+      bonus2 bAddRace,Class_Boss,28+((.@scale*9)/10);
+      bonus bRes,((.@scale*7)/10);
+      bonus bMres,((.@scale*7)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840088
+    AegisName: smw_azur_boots_t3
+    Name: Botas Smoke Azur [Tier III]
+    Type: Armor
+    ArmorLevel: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 150
+    Slots: 2
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>200).@lv=200;
+      .@scale=.@lv-150;
+      bonus bAtk,200+(.@scale*5);
+      bonus bMatk,200+(.@scale*5);
+      bonus bMaxSPrate,10;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*9)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*9)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true      
+# =====================================================
+# ASCENSION SET (200, 215, 230)
+# =====================================================
+  - Id: 840064
+    AegisName: smw_ascension_armor_t1
+    Name: Armadura Smoke Ascension [Tier I]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Armor: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bAtk,260+(.@scale*4);
+      bonus bMatk,260+(.@scale*4);
+      bonus bMaxHPrate,15;
+      bonus bAtkRate,50+(.@scale*1);
+      bonus bMatkRate,50+(.@scale*1);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840065
+    AegisName: smw_ascension_mantle_t1
+    Name: Manto Smoke Ascension [Tier I]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Garment: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bDef,260+(.@scale*4);
+      bonus bMdef,260+(.@scale*4);
+      bonus2 bAddRace,Class_Boss,25+((.@scale*7)/10);
+      bonus bRes,((.@scale*6)/10);
+      bonus bMres,((.@scale*6)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840066
+    AegisName: smw_ascension_boots_t1
+    Name: Botas Smoke Ascension [Tier I]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Shoes: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bAtk,210+(.@scale*4);
+      bonus bMatk,210+(.@scale*4);
+      bonus bMaxSPrate,10;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*7)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*7)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840089
+    AegisName: smw_ascension_armor_t2
+    Name: Armadura Smoke Ascension [Tier II]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Armor: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bAtk,310+(.@scale*6);
+      bonus bMatk,310+(.@scale*6);
+      bonus bMaxHPrate,18;
+      bonus bAtkRate,65+((.@scale*15)/10);
+      bonus bMatkRate,65+((.@scale*15)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840090
+    AegisName: smw_ascension_mantle_t2
+    Name: Manto Smoke Ascension [Tier II]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Garment: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bDef,310+(.@scale*6);
+      bonus bMdef,310+(.@scale*6);
+      bonus2 bAddRace,Class_Boss,32+((.@scale*9)/10);
+      bonus bRes,((.@scale*8)/10);
+      bonus bMres,((.@scale*8)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840091
+    AegisName: smw_ascension_boots_t2
+    Name: Botas Smoke Ascension [Tier II]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Shoes: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bAtk,250+(.@scale*5);
+      bonus bMatk,250+(.@scale*5);
+      bonus bMaxSPrate,13;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*9)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*9)/10);
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840092
+    AegisName: smw_ascension_armor_t3
+    Name: Armadura Smoke Ascension [Tier III]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Armor: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Gradable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bAtk,350+(.@scale*7);
+      bonus bMatk,350+(.@scale*7);
+      bonus bMaxHPrate,20;
+      bonus bAtkRate,75+((.@scale*18)/10);
+      bonus bMatkRate,75+((.@scale*18)/10);
+      .@g = getenchantgrade();
+      if (.@g >= ENCHANTGRADE_D) {
+          bonus bAllStats,2;
+          bonus bAtkRate,3;
+          bonus bMatkRate,3;
+          if (.@g >= ENCHANTGRADE_C) {
+              bonus bAllStats,1;
+              bonus bAtkRate,1;
+              bonus bMatkRate,1;
+              if (.@g >= ENCHANTGRADE_B) {
+                  bonus bAllStats,1;
+                  bonus bAtkRate,1;
+                  bonus bMatkRate,1;
+                  if (.@g >= ENCHANTGRADE_A) {
+                      bonus bAllStats,2;
+                      bonus bAtkRate,2;
+                      bonus bMatkRate,2;
+                  }
+              }
+          }
+      }
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840093
+    AegisName: smw_ascension_mantle_t3
+    Name: Manto Smoke Ascension [Tier III]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Garment: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Gradable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bDef,350+(.@scale*7);
+      bonus bMdef,350+(.@scale*7);
+      bonus2 bAddRace,Class_Boss,38+((.@scale*11)/10);
+      bonus bRes,((.@scale*9)/10);
+      bonus bMres,((.@scale*9)/10);
+      .@g = getenchantgrade();
+      if (.@g >= ENCHANTGRADE_D) {
+          bonus bAspdRate,2;
+          bonus bVariableCastrate,-4;
+          if (.@g >= ENCHANTGRADE_C) {
+              bonus bAspdRate,1;
+              bonus bVariableCastrate,-2;
+              bonus bFixedCastrate,-2;
+              if (.@g >= ENCHANTGRADE_B) {
+                  bonus bAspdRate,1;
+                  bonus bVariableCastrate,-2;
+                  bonus bFixedCastrate,-2;
+                  if (.@g >= ENCHANTGRADE_A) {
+                      bonus bAspdRate,1;
+                      bonus bVariableCastrate,-2;
+                      bonus bFixedCastrate,-3;
+                  }
+              }
+          }
+      }
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840094
+    AegisName: smw_ascension_boots_t3
+    Name: Botas Smoke Ascension [Tier III]
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Shoes: true
+    EquipLevelMin: 200
+    Slots: 3
+    Refineable: true
+    Gradable: true
+    Script: |
+      .@lv=BaseLevel;
+      if(.@lv>250).@lv=250;
+      .@scale=.@lv-200;
+      bonus bAtk,280+(.@scale*6);
+      bonus bMatk,280+(.@scale*6);
+      bonus bMaxSPrate,13;
+      bonus2 bIgnoreDefClassRate,Class_All,((.@scale*11)/10);
+      bonus2 bIgnoreMdefClassRate,Class_All,((.@scale*11)/10);
+      .@g = getenchantgrade();
+      if (.@g >= ENCHANTGRADE_D) {
+          bonus bAllStats,2;
+          bonus bMaxHPrate,4;
+          bonus bMaxSPrate,4;
+          if (.@g >= ENCHANTGRADE_C) {
+              bonus bAllStats,1;
+              bonus bMaxHPrate,2;
+              bonus bMaxSPrate,2;
+              if (.@g >= ENCHANTGRADE_B) {
+                  bonus bAllStats,1;
+                  bonus bMaxHPrate,2;
+                  bonus bMaxSPrate,2;
+                  if (.@g >= ENCHANTGRADE_A) {
+                      bonus bAllStats,2;
+                      bonus bMaxHPrate,2;
+                      bonus bMaxSPrate,2;
+                  }
+              }
+          }
+      }
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+# ======================================================================
+# Containers Smoke GodLike, Phoenix, Azur & Ascension | 840067 ~ 840070
+# ======================================================================
+  - Id: 840067
+    AegisName: smk_container_godlike
+    Name: Container Smoke GodLike
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      getitembound 840055,1,Bound_Char;
+      getitembound 840056,1,Bound_Char;
+      getitembound 840057,1,Bound_Char;
+      specialeffect2 EF_BEGINSPELL_N5;
+      message strcharinfo(0),"!!Poder Smoke GodLike Despertado!!";
+      announce "O jogador ["+strcharinfo(0)+"] despertou o poder da Smoke GodLike!",bc_all,0xFFFF00;
+  - Id: 840068
+    AegisName: smk_container_phoenix
+    Name: Container Smoke Phoenix
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      getitembound 840058,1,Bound_Char;
+      getitembound 840059,1,Bound_Char;
+      getitembound 840060,1,Bound_Char;
+      specialeffect2 EF_BEGINSPELL_N3;
+      message strcharinfo(0),"!!Poder Smoke Phoenix Despertado!!";
+      announce "O jogador ["+strcharinfo(0)+"] despertou o poder da Smoke Phoenix!",bc_all,0xFF3300;
+  - Id: 840069
+    AegisName: smk_container_azur
+    Name: Container Smoke Azur
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      getitembound 840061,1,Bound_Char;
+      getitembound 840062,1,Bound_Char;
+      getitembound 840063,1,Bound_Char;
+      specialeffect2 EF_BEGINSPELL_N8;
+      message strcharinfo(0),"!!Poder Smoke Azur Despertado!!";
+      announce "O jogador ["+strcharinfo(0)+"] despertou o poder da Smoke Azur!",bc_all,0x3399FF;
+  - Id: 840070
+    AegisName: smk_container_ascension
+    Name: Container Smoke Ascension
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      getitembound 840064,1,Bound_Char;
+      getitembound 840065,1,Bound_Char;
+      getitembound 840066,1,Bound_Char;
+      specialeffect2 EF_BEGINSPELL_N7;
+      message strcharinfo(0),"!!Poder Smoke Ascension Despertado!!";
+      announce "O jogador ["+strcharinfo(0)+"] despertou o poder da Smoke Ascension!",bc_all,0x9900FF;
+#===============================================
+# EssÃªncias da Vida, do Fogo, do Gelo & da Morte
+# IDs Livres: - | - | - | -
+#===============================================
+#===============================================
+# Forja do Container Smoke GodLike
+# IDs: 840067
+#===============================================
+  - Id: 840099
+    AegisName: smk_hammer_divine
+    Name: Martelo dos Deuses
+    Type: Usable
+    Flags:
+      NoConsume: true
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Weight: 10
+    Script: |
+      if(countitem(840100)>0) { item_reform(); }
+  - Id: 840100
+    AegisName: smk_anvil_divine
+    Name: Fornalha Divina
+    Type: Etc
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Weight: 10
+#===============================================
+# EssÃªncias Ancestral e Divina
+#===============================================
+#= Fragmentos, Runas e EssÃªncias - Smoke Gear Progression Iten's
+  - Id: 840103
+    AegisName: smw_rune_frag_life
+    Name: Fragmento de Runa da Vida
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840104
+    AegisName: smw_rune_frag_fire
+    Name: Fragmento de Runa do Fogo
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840105
+    AegisName: smw_rune_frag_ice
+    Name: Fragmento de Runa do Gelo
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840106
+    AegisName: smw_rune_frag_death
+    Name: Fragmento de Runa da Morte
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840107
+    AegisName: smw_rune_frag_ancestral
+    Name: Fragmento de Runa Ancestral
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840108
+    AegisName: smw_rune_frag_divine
+    Name: Fragmento de Runa Divina
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840109
+    AegisName: smw_rune_life
+    Name: Runa da Vida
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840110
+    AegisName: smw_rune_fire
+    Name: Runa do Fogo
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840111
+    AegisName: smw_rune_ice
+    Name: Runa do Gelo
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840112
+    AegisName: smw_rune_death
+    Name: Runa da Morte
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840113
+    AegisName: smw_rune_ancestral
+    Name: Runa Ancestral
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840114
+    AegisName: smw_rune_divine
+    Name: Runa Divina
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840115
+    AegisName: smw_rune_essence_life
+    Name: EssÃªncia da Vida
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 840116
+    AegisName: smw_rune_essence_fire
+    Name: EssÃªncia do Fogo
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 840117
+    AegisName: smw_rune_essence_ice
+    Name: EssÃªncia do Gelo
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 840118
+    AegisName: smw_rune_essence_death
+    Name: EssÃªncia da Morte
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 840119
+    AegisName: smw_rune_essence_ancestral
+    Name: EssÃªncia Ancestral
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 840120
+    AegisName: smw_rune_essence_divine
+    Name: EssÃªncia Divina
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 840095
+    AegisName: nossaCoin
+    Name: Nossa Coin
+    Type: Usable
+    Flags:
+      DropEffect: CLIENT
+    Script: |
+      callfunc "addNossaCoin",1;
+#= Mochilas Custom
+  - Id: 840047
+    AegisName: randoserublue
+    Name: Costume Mochilinha Azul
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 2710
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAddMaxWeight,1000;
+  - Id: 840048
+    AegisName: randoserugreen
+    Name: Costume Mochilinha Verde
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 2711
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAddMaxWeight,1000;
+  - Id: 840049
+    AegisName: randoserured
+    Name: Costume Mochilinha Vermelha
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 2712
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAddMaxWeight,1000;
+  - Id: 840050
+    AegisName: randoseruyellow
+    Name: Costume Mochilinha Amarela
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 2713
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAddMaxWeight,1000;
+#= Cheque de 1M (1kk) de Zeny - 840096
+  - Id: 840096
+    AegisName: smk_check_zeny_1m
+    Name: Cheque - 1M de Zeny
+    Type: Usable
+    Script: |
+      Zeny +=1000000;
+#= Costumes - 840121 ~ 840131
+  - Id: 840121
+    AegisName: smk_aura_red
+    Name: Costume Smoke Aura Red
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2714
+  - Id: 840122
+    AegisName: smk_aura_blue
+    Name: Costume Smoke Aura Blue
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2715
+  - Id: 840123
+    AegisName: smk_aura_cyan
+    Name: Costume Smoke Aura Cyan
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2716
+  - Id: 840124
+    AegisName: smk_aura_green
+    Name: Costume Smoke Aura Green
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2717
+  - Id: 840125
+    AegisName: smk_aura_violet
+    Name: Costume Smoke Aura Violet
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2718
+  - Id: 840126
+    AegisName: smk_aura_lilac
+    Name: Costume Smoke Aura Lilac
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2719
+  - Id: 840127
+    AegisName: smk_aura_orange
+    Name: Costume Smoke Aura Orange
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2720
+  - Id: 840128
+    AegisName: smk_aura_white
+    Name: Costume Smoke Aura White
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2721
+  - Id: 840129
+    AegisName: smk_aura_black
+    Name: Costume Smoke Aura Black
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 2722
+#= SmokeDrasil ?!
+#= 840097 & 840098
+  - Id: 840097
+    AegisName: smk_vapor_fruit
+    Name: Vapor Fruit
+    Type: Healing
+    Weight: 300
+    Delay:
+      Duration: 5000
+      Status: Reuse_Limit_F
+    Script: |
+      percentheal 100,100;
+      healap 200;
+      specialeffect2 312;
+  - Id: 840098
+    AegisName: smk_vapor_fruit2
+    Name: Vapor Fruit Box
+    Type: Usable
+    Weight: 100
+    Script: |
+      getitem 840097,10;
+# itens etc. primordial = 840130, 840132, 840133
+  - Id: 840130
+    AegisName: smw_rune_frag_primo
+    Name: Fragmento de Runa Primordial
+    Type: Etc
+    Flags:
+      DropEffect: CLIENT
+  - Id: 840132
+    AegisName: smw_rune_primo
+    Name: Runa Primordial
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840133
+    AegisName: smw_rune_essence_primo
+    Name: EssÃªncia Primordial
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+# container de runas = 840134
+  - Id: 840134
+    AegisName: smk_container_runes
+    Name: Container Smoke Runas
+    Type: Usable
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "F_SmokeRunes";
+# caixa de armas frontier
+  - Id: 840135
+    AegisName: smk_container_frontier
+    Name: Container Armas Frontier
+    Type: Usable
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "caixaArmasFrontier";
+# Runas e Catalisadores Frontier
+  - Id: 840136
+    AegisName: smk_rune_ansuz
+    Name: Runa Frontier Ansuz
+    Type: Etc
+    Weight: 1
+  - Id: 840137
+    AegisName: smk_rune_berkano
+    Name: Runa Frontier Berkano
+    Type: Etc
+    Weight: 1
+  - Id: 840138
+    AegisName: smk_rune_dagaz
+    Name: Runa Frontier Dagaz
+    Type: Etc
+    Weight: 1
+  - Id: 840139
+    AegisName: smk_rune_ehwaz
+    Name: Runa Frontier Ehwaz
+    Type: Etc
+    Weight: 1
+  - Id: 840140
+    AegisName: smk_rune_eihaz
+    Name: Runa Frontier Eihaz
+    Type: Etc
+    Weight: 1
+  - Id: 840141
+    AegisName: smk_rune_fehu
+    Name: Runa Frontier Fehu
+    Type: Etc
+    Weight: 1
+  - Id: 840142
+    AegisName: smk_rune_gebo
+    Name: Runa Frontier Gebo
+    Type: Etc
+    Weight: 1
+  - Id: 840143
+    AegisName: smk_rune_hagalaz
+    Name: Runa Frontier Hagalaz
+    Type: Etc
+    Weight: 1
+  - Id: 840144
+    AegisName: smk_rune_isa
+    Name: Runa Frontier Isa
+    Type: Etc
+    Weight: 1
+  - Id: 840145
+    AegisName: smk_rune_jara
+    Name: Runa Frontier Jara
+    Type: Etc
+    Weight: 1
+  - Id: 840146
+    AegisName: smk_rune_kenaz
+    Name: Runa Frontier Kenaz
+    Type: Etc
+    Weight: 1
+  - Id: 840147
+    AegisName: smk_rune_laguz
+    Name: Runa Frontier Laguz
+    Type: Etc
+    Weight: 1
+  - Id: 840148
+    AegisName: smk_rune_mannaz
+    Name: Runa Frontier Mannaz
+    Type: Etc
+    Weight: 1
+  - Id: 840149
+    AegisName: smk_rune_naudhiz
+    Name: Runa Frontier Naudhiz
+    Type: Etc
+    Weight: 1
+  - Id: 840150
+    AegisName: smk_rune_othel
+    Name: Runa Frontier Othel
+    Type: Etc
+    Weight: 1
+  - Id: 840151
+    AegisName: smk_rune_perthro
+    Name: Runa Frontier Perthro
+    Type: Etc
+    Weight: 1
+  - Id: 840152
+    AegisName: smk_rune_raidho
+    Name: Runa Frontier Raidho
+    Type: Etc
+    Weight: 1
+  - Id: 840153
+    AegisName: smk_rune_sowilo
+    Name: Runa Frontier Sowilo
+    Type: Etc
+    Weight: 1
+  - Id: 840154
+    AegisName: smk_rune_thurisaz
+    Name: Runa Frontier Thurisaz
+    Type: Etc
+    Weight: 1
+  - Id: 840155
+    AegisName: smk_rune_tiwaz
+    Name: Runa Frontier Tiwaz
+    Type: Etc
+    Weight: 1
+  - Id: 840156
+    AegisName: smk_rune_uraz
+    Name: Runa Frontier Uraz
+    Type: Etc
+    Weight: 1
+  - Id: 840157
+    AegisName: smk_rune_wunjo
+    Name: Runa Frontier Wunjo
+    Type: Etc
+    Weight: 0
+    Trade:
+      Override: 99
+      NoSell: true
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840158
+    AegisName: smk_frontier_essentia
+    Name: Essentia Frontier
+    Type: Etc
+    Weight: 1
+  - Id: 840159
+    AegisName: smk_frontier_conflux
+    Name: Conflux Frontier
+    Type: Etc
+    Weight: 1
+  - Id: 840160
+    AegisName: smk_frontier_core
+    Name: Core Frontier
+    Type: Etc
+    Weight: 1
+  - Id: 840161
+    AegisName: smk_frontier_aether
+    Name: Aether Frontier
+    Type: Etc
+    Weight: 1
+  - Id: 840162
+    AegisName: SMK_ASCENSION_F
+    Name: Aprimoramento Smoke FÃ­sico
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_upgrade();
+  - Id: 840163
+    AegisName: SMK_ASCENSION_M
+    Name: Aprimoramento Smoke MÃ¡gico
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_upgrade();
+  - Id: 840164
+    AegisName: smk_container_f_runes
+    Name: Container Runas Frontier
+    Type: Usable
+    Script: |
+      callfunc "caixaRunasFrontier";
+  - Id: 840165
+    AegisName: smk_frontier_c_ansuz
+    Name: Runa Frontier Ansuz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840166
+    AegisName: smk_frontier_c_berkano
+    Name: Runa Frontier Berkano Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840167
+    AegisName: smk_frontier_c_dagaz
+    Name: Runa Frontier Dagaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840168
+    AegisName: smk_frontier_c_ehwaz
+    Name: Runa Frontier Ehwaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840169
+    AegisName: smk_frontier_c_eihaz
+    Name: Runa Frontier Eihaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840170
+    AegisName: smk_frontier_c_fehu
+    Name: Runa Frontier Fehu Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840171
+    AegisName: smk_frontier_c_gebo
+    Name: Runa Frontier Gebo Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840172
+    AegisName: smk_frontier_c_hagalaz
+    Name: Runa Frontier Hagalaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840173
+    AegisName: smk_frontier_c_isa
+    Name: Runa Frontier Isa Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840174
+    AegisName: smk_frontier_c_jara
+    Name: Runa Frontier Jara Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840175
+    AegisName: smk_frontier_c_kenaz
+    Name: Runa Frontier Kenaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840176
+    AegisName: smk_frontier_c_laguz
+    Name: Runa Frontier Laguz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840177
+    AegisName: smk_frontier_c_mannaz
+    Name: Runa Frontier Mannaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840178
+    AegisName: smk_frontier_c_naudhiz
+    Name: Runa Frontier Naudhiz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840179
+    AegisName: smk_frontier_c_othel
+    Name: Runa Frontier Othel Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840180
+    AegisName: smk_frontier_c_perthro
+    Name: Runa Frontier Perthro Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840181
+    AegisName: smk_frontier_c_raidho
+    Name: Runa Frontier Raidho Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840182
+    AegisName: smk_frontier_c_sowilo
+    Name: Runa Frontier Sowilo Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840183
+    AegisName: smk_frontier_c_thurisaz
+    Name: Runa Frontier Thurisaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840184
+    AegisName: smk_frontier_c_tiwaz
+    Name: Runa Frontier Tiwaz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840185
+    AegisName: smk_frontier_c_uraz
+    Name: Runa Frontier Uraz Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840186
+    AegisName: smk_frontier_c_wunjo
+    Name: Runa Frontier Wunjo Coroa
+    Type: Etc
+    Weight: 0
+    Trade:
+      Override: 99
+      NoSell: true
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840187
+    AegisName: smk_frontier_c_essentia
+    Name: Essentia Frontier Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840188
+    AegisName: smk_frontier_c_conflux
+    Name: Conflux Frontier Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840189
+    AegisName: smk_frontier_c_core
+    Name: Core Frontier Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840190
+    AegisName: smk_frontier_c_aether
+    Name: Aether Frontier Coroa
+    Type: Etc
+    Weight: 1
+  - Id: 840191
+    AegisName: smk_container_c_runes
+    Name: Container Runas Frontier Coroa
+    Type: Usable
+    Script: |
+      callfunc "caixaRunasCoroasFrontier";
+  - Id: 840192
+    AegisName: smk_container_c_frontier
+    Name: Container Coroas Frontier
+    Type: Usable
+    Flags:
+      DropEffect: CLIENT
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "caixaCoroasFrontier";
+  - Id: 840193
+    AegisName: smk_container_blessing
+    Name: Container Benção do Ferreiro
+    Type: Usable
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      getitem 6635,10;
+  - Id: 840194
+    AegisName: smk_ticket_mystic
+    Name: Ticket Smoke Místico
+    Type: Etc
+    Weight: 1
+# Itens Ascended
+  - Id: 840195
+    AegisName: SMK_BASE_STR
+    Name: Ascended - Força Base
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bStr,4;
+        if (.@g >= ENCHANTGRADE_D) bonus bStr,2;
+        if (.@g >= ENCHANTGRADE_C) bonus bStr,2;
+        if (.@g >= ENCHANTGRADE_B) bonus bStr,1;
+        if (.@g >= ENCHANTGRADE_A) bonus bStr,1;
+  - Id: 840196
+    AegisName: SMK_BASE_DEX
+    Name: Ascended - Destreza Base
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bDex,4;
+        if (.@g >= ENCHANTGRADE_D) bonus bDex,2;
+        if (.@g >= ENCHANTGRADE_C) bonus bDex,2;
+        if (.@g >= ENCHANTGRADE_B) bonus bDex,1;
+        if (.@g >= ENCHANTGRADE_A) bonus bDex,1;
+  - Id: 840197
+    AegisName: SMK_BASE_INT
+    Name: Ascended - Inteligência Base
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bInt,4;
+        if (.@g >= ENCHANTGRADE_D) bonus bInt,2;
+        if (.@g >= ENCHANTGRADE_C) bonus bInt,2;
+        if (.@g >= ENCHANTGRADE_B) bonus bInt,1;
+        if (.@g >= ENCHANTGRADE_A) bonus bInt,1;
+  - Id: 840198
+    AegisName: SMK_BASE_VIT
+    Name: Ascended - Vitalidade Base
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bVit,4;
+        if (.@g >= ENCHANTGRADE_D) bonus bVit,2;
+        if (.@g >= ENCHANTGRADE_C) bonus bVit,2;
+        if (.@g >= ENCHANTGRADE_B) bonus bVit,1;
+        if (.@g >= ENCHANTGRADE_A) bonus bVit,1;
+  - Id: 840199
+    AegisName: SMK_BASE_AGI
+    Name: Ascended - Agilidade Base
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bAgi,4;
+        if (.@g >= ENCHANTGRADE_D) bonus bAgi,2;
+        if (.@g >= ENCHANTGRADE_C) bonus bAgi,2;
+        if (.@g >= ENCHANTGRADE_B) bonus bAgi,1;
+        if (.@g >= ENCHANTGRADE_A) bonus bAgi,1;
+  - Id: 840200
+    AegisName: SMK_BASE_LUK
+    Name: Ascended - Sorte Base
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bLuk,4;
+        if (.@g >= ENCHANTGRADE_D) bonus bLuk,2;
+        if (.@g >= ENCHANTGRADE_C) bonus bLuk,2;
+        if (.@g >= ENCHANTGRADE_B) bonus bLuk,1;
+        if (.@g >= ENCHANTGRADE_A) bonus bLuk,1;
+  - Id: 840201
+    AegisName: SMK_BASE_HP
+    Name: Ascended - HP Boost
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bMaxHPrate,5;
+        if (.@g >= ENCHANTGRADE_D) bonus bMaxHPrate,3;
+        if (.@g >= ENCHANTGRADE_C) bonus bMaxHPrate,3;
+        if (.@g >= ENCHANTGRADE_B) bonus bMaxHPrate,2;
+        if (.@g >= ENCHANTGRADE_A) bonus bMaxHPrate,2;
+  - Id: 840202
+    AegisName: SMK_BASE_SP
+    Name: Ascended - SP Boost
+    Type: Card
+    SubType: Enchant
+    Script: |
+        .@g = getenchantgrade();
+        bonus bMaxSPrate,5;
+        if (.@g >= ENCHANTGRADE_D) bonus bMaxSPrate,3;
+        if (.@g >= ENCHANTGRADE_C) bonus bMaxSPrate,3;
+        if (.@g >= ENCHANTGRADE_B) bonus bMaxSPrate,2;
+        if (.@g >= ENCHANTGRADE_A) bonus bMaxSPrate,2;
+  - Id: 840203
+    AegisName: SMK_CORE_RUPTURA
+    Name: Ascended - Essência da Ruptura
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // CORE_RUPTURA
+        .@r = getrefine();
+        // Dano híbrido
+        bonus bAtkRate,10 + (.@r/2);
+        bonus bMatkRate,10 + (.@r/2);
+        // Penalidade escalável (mais interessante)
+        bonus bMaxHPrate,-10 - (.@r/5);
+        bonus bMaxSPrate,-10 - (.@r/5);
+  - Id: 840204
+    AegisName: SMK_CORE_PERSISTENCIA
+    Name: Ascended - Essência da Persistência
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // CORE_PERSISTENCIA
+        .@r = getrefine();
+        // HP scaling forte
+        bonus bMaxHPrate,15 + (.@r/2);
+        // Defesa % (melhor que flat no endgame)
+        bonus bDefRate,5 + (.@r/5);
+        bonus bMdefRate,5 + (.@r/5);
+        // Sustain
+        bonus3 bHPDrainRate,1000,8 + (.@r/5),0;
+  - Id: 840205
+    AegisName: SMK_CORE_ELEMENTAL
+    Name: Ascended - Essência Elemental
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // CORE_ELEMENTAL
+        .@r = getrefine();
+        // Dano elemental mágico
+        bonus2 bMagicAtkEle,Ele_Fire,8 + (.@r/3);
+        bonus2 bMagicAtkEle,Ele_Water,8 + (.@r/3);
+        bonus2 bMagicAtkEle,Ele_Wind,8 + (.@r/3);
+        bonus2 bMagicAtkEle,Ele_Earth,8 + (.@r/3);
+        bonus2 bMagicAtkEle,Ele_Holy,8 + (.@r/3);
+        bonus2 bMagicAtkEle,Ele_Dark,8 + (.@r/3);
+        // ?? bônus físico também (isso muda tudo)
+        bonus2 bAddEle,Ele_All,5 + (.@r/5);
+  - Id: 840206
+    AegisName: SMK_CORE_CRIT
+    Name: Ascended - Essência Crítica
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // CORE_CRIT
+        .@r = getrefine();
+        // Dano crítico
+        bonus bCritAtkRate,10 + (.@r/2);
+        // Taxa crítica
+        bonus bCritical,10 + (.@r/3);
+  - Id: 840207
+    AegisName: SMK_CORE_ASPD
+    Name: Ascended - Essência de Velocidade
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // CORE_ASPD
+        .@r = getrefine();
+        // ASPD mais relevante
+        bonus bAspdRate,5 + (.@r/3);
+        // Redução de delay (skill spam)
+        bonus bDelayRate,-5 - (.@r/5);
+  - Id: 840208
+    AegisName: SMK_CORE_CAST
+    Name: Ascended - Essência Arcana Fluida
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // CORE_CAST
+        .@r = getrefine();
+        // ?? Variable Cast (forte)
+        bonus bVariableCastrate,-20 - (.@r/2);
+        // ?? Fixed Cast (ABSURDO — supera a bota)
+        bonus bFixedCast,-500 - (.@r*30);
+        // ? Delay (faz diferença real no DPS)
+        bonus bDelayRate,-10 - (.@r/10);
+  - Id: 840209
+    AegisName: SMK_SPEC_PHYSICAL
+    Name: Ascended - Essência da Destruição Física
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // SPEC_PHYSICAL
+        .@r = getrefine();
+        if (Class == Job_DragonKnight) {
+            bonus2 bSkillAtk,"DK_HACKANDSLASHER",10 + (.@r/2);
+            bonus2 bSkillAtk,"DK_SERVANTWEAPON_ATK",10 + (.@r/2);
+            bonus2 bAddSkillCooldown,"DK_HACKANDSLASHER",-200;
+        }
+        else if (Class == Job_ImperialGuard) {
+            bonus2 bSkillAtk,"IG_IMPERIAL_CROSS",10 + (.@r/2);
+            bonus2 bSkillAtk,"IG_OVERSLASH",10 + (.@r/2);
+            bonus bMaxHPrate,5;
+        }
+        else if (Class == Job_Meister) {
+            bonus2 bSkillAtk,"MT_RUSH_STRIKE",10 + (.@r/2);
+            bonus2 bSkillAtk,"MT_POWERFUL_SWING",10 + (.@r/2);
+            bonus bDelayrate,-3;
+        }
+        else if (Class == Job_ShadowCross) {
+            bonus2 bSkillAtk,"SHC_SAVAGE_IMPACT",8 + (.@r/2);
+            bonus bCritAtkRate,10;
+        }
+  - Id: 840210
+    AegisName: SMK_SPEC_RANGED
+    Name: Ascended - Essência do Tiro Preciso
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // SPEC_RANGED
+        .@r = getrefine();
+        if (Class == Job_Windhawk) {
+            bonus2 bSkillAtk,"WH_CRESCIVE_BOLT",10 + (.@r/2);
+            bonus2 bSkillAtk,"WH_GALESTORM",10 + (.@r/2);
+            bonus bLongAtkRate,5;
+        }
+        else if (Class == Job_NightWatch) {
+            bonus2 bSkillAtk,"NW_SPIRAL_SHOOTING",10 + (.@r/2);
+            bonus2 bSkillAtk,"NW_WILD_SHOT",10 + (.@r/2);
+            bonus bCritAtkRate,10;
+        }
+        else if (Class == Job_Troubadour) {
+            bonus2 bSkillAtk,"TR_RHYTHMSHOOTING",10 + (.@r/2);
+            bonus bVariableCastrate,-5;
+        }
+  - Id: 840211
+    AegisName: SMK_SPEC_MAGIC
+    Name: Ascended - Essência Arcana
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // SPEC_MAGIC
+        .@r = getrefine();
+        if (Class == Job_ArchMage) {
+            bonus2 bSkillAtk,"AG_CRIMSON_ARROW",10 + (.@r/2);
+            bonus2 bSkillAtk,"AG_ROCK_DOWN",10 + (.@r/2);
+            bonus bFixedCast,-200;
+        }
+        else if (Class == Job_ElementalMaster) {
+            bonus2 bSkillAtk,"MG_FIREBOLT",20 + (.@r/2);
+            bonus2 bSkillAtk,"MG_COLDBOLT",20 + (.@r/2);
+            bonus bVariableCastrate,-5;
+        }
+        else if (Class == Job_Cardinal) {
+            bonus2 bSkillAtk,"CD_DIVINUS_FLOS",10 + (.@r/2);
+            bonus bHealPower,10;
+        }
+  - Id: 840212
+    AegisName: SMK_SPEC_SUPPORT
+    Name: Ascended - Essência Divina
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // SPEC_SUPPORT
+        .@r = getrefine();
+        bonus bHealPower,10 + (.@r/3);
+        bonus bMaxSPrate,5 + (.@r/5);
+        bonus bVariableCastrate,-5;
+  - Id: 840213
+    AegisName: SMK_SPEC_HYBRID
+    Name: Ascended - Essência do Caos
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // SPEC_HYBRID
+        .@r = getrefine();
+        bonus bAtkRate,5 + (.@r/3);
+        bonus bMatkRate,5 + (.@r/3);
+        bonus bAspdRate,2;
+        bonus bVariableCastrate,-3;
+  - Id: 840214
+    AegisName: SMK_SPEC_ELEMENTAL_CLASS
+    Name: Ascended - Essência Elemental Suprema
+    Type: Card
+    SubType: Enchant
+    Script: |
+        // SPEC_ELEMENTAL_CLASS
+        .@r = getrefine();
+        bonus2 bMagicAtkEle,Ele_All,5 + (.@r/3);
+        bonus bMatkRate,5 + (.@r/3);
+# Set Ascended
+  - Id: 840215
+    AegisName: smk_ascended_armor
+    Name: Armadura Smoke Ascended
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Armor: true
+    EquipLevelMin: 265
+    Slots: 1
+    Refineable: true
+    Gradable: true
+    Script: |
+      // Base
+      bonus bAtk,150;
+      bonus bMatk,150;
+      bonus bMaxHPrate,10;
+      // Refine scaling
+      .@r = getrefine();
+      bonus bAtk,10 * (.@r/2);
+      bonus bMatk,10 * (.@r/2);
+      if (.@r >= 7) bonus bMaxHPrate,5;
+      if (.@r >= 9) bonus2 bAddRace,RC_Boss,10;
+      if (.@r >= 11) bonus2 bAddRace,RC_Boss,10;
+      // Grade scaling
+      .@g = getenchantgrade();
+      if (.@g >= ENCHANTGRADE_D) bonus bAtk,50;
+      if (.@g >= ENCHANTGRADE_C) bonus bMaxHPrate,5;
+      if (.@g >= ENCHANTGRADE_B) bonus bAtkRate,10;
+      if (.@g >= ENCHANTGRADE_A) bonus2 bAddRace,RC_Boss,15;
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840216
+    AegisName: smk_ascended_garment
+    Name: Manto Smoke Ascended
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Garment: true
+    EquipLevelMin: 265
+    Slots: 1
+    Refineable: true
+    Gradable: true
+    Script: |
+      // Base
+      bonus bDef,200;
+      bonus bMdef,200;
+      bonus2 bAddRace,RC_Boss,15;
+      // Refine scaling
+      .@r = getrefine();
+      bonus bDef,10 * (.@r/2);
+      bonus bMdef,10 * (.@r/2);
+      if (.@r >= 7) bonus bRes,5;
+      if (.@r >= 9) bonus bMres,5;
+      if (.@r >= 11) bonus2 bAddRace,RC_Boss,10;
+      // Grade scaling
+      .@g = getenchantgrade();
+      if (.@g >= ENCHANTGRADE_D) bonus bAspdRate,2;
+      if (.@g >= ENCHANTGRADE_C) bonus bVariableCastrate,-5;
+      if (.@g >= ENCHANTGRADE_B) bonus bFixedCast,-200;
+      if (.@g >= ENCHANTGRADE_A) bonus2 bAddRace,RC_Boss,15;
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 840217
+    AegisName: smk_ascended_shoes
+    Name: Sapatos Smoke Ascended
+    Type: Armor
+    ArmorLevel: 6
+    Locations:
+      Shoes: true
+    EquipLevelMin: 265
+    Slots: 1
+    Refineable: true
+    Gradable: true
+    Script: |
+      // Base
+      bonus bAtk,120;
+      bonus bMatk,120;
+      bonus bMaxSPrate,10;
+      // Refine scaling
+      .@r = getrefine();
+      bonus bAtk,8 * (.@r/2);
+      bonus bMatk,8 * (.@r/2);
+      if (.@r >= 7) bonus bMaxSPrate,5;
+      if (.@r >= 9) bonus2 bIgnoreDefClassRate,Class_All,10;
+      if (.@r >= 11) bonus2 bIgnoreMdefClassRate,Class_All,10;
+      // Grade scaling
+      .@g = getenchantgrade();
+      if (.@g >= ENCHANTGRADE_D) bonus bMaxHPrate,5;
+      if (.@g >= ENCHANTGRADE_C) bonus bMaxSPrate,5;
+      if (.@g >= ENCHANTGRADE_B) {
+          bonus2 bIgnoreDefClassRate,Class_All,10;
+          bonus2 bIgnoreMdefClassRate,Class_All,10;
+      }
+      if (.@g >= ENCHANTGRADE_A) bonus bAllStats,5;
+    Trade:
+      Override: 99
+      NoDrop: true
+      NoTrade: true
+      TradePartner: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true

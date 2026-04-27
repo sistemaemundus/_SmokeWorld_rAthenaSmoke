@@ -1,0 +1,130 @@
+*** src/map/emundus.hpp
++ #pragma once
++ 
++ #include "map/pc.hpp"
++ #include "map/status.hpp"
++ #include "map/itemdb.hpp"
++ #include <vector>
++ 
++ // Atualiza o stateicon baseado na smoke_gear_prog
++ void UpdateSmokeStatus(map_session_data* sd);
++ 
++ // Checa combos SmokeGear
++ void CheckSetBonus(map_session_data* sd);
+
+*** src/map/emundus.cpp
++ #include "emundus.hpp"
++ #include "map/char.hpp"
++ #include "map/clif.hpp"
++ #include "map/itemdb.hpp"
++ #include "map/status.hpp"
++ #include "map/pc.hpp"
++ #include <algorithm>
++ 
++ void UpdateSmokeStatus(map_session_data* sd)
++ {
++     if (!sd)
++         return;
++ 
++     // Remove todos os SC Smoke
++     status_change_end(&sd->bl, SC_SMOKE_GODLIKE, INVALID_TIMER);
++     status_change_end(&sd->bl, SC_SMOKE_PHOENIX, INVALID_TIMER);
++     status_change_end(&sd->bl, SC_SMOKE_AZUR, INVALID_TIMER);
++     status_change_end(&sd->bl, SC_SMOKE_ASCENSION, INVALID_TIMER);
++ 
++     if (!pc_isSmokeGear(sd))
++         return;
++ 
++     switch (sd->bonus.smoke_gear_prog)
++     {
++     case 1:
++         sc_start(&sd->bl, &sd->bl, SC_SMOKE_GODLIKE, 100, 0, INFINITE_TICK);
++         break;
++     case 2:
++         sc_start(&sd->bl, &sd->bl, SC_SMOKE_PHOENIX, 100, 0, INFINITE_TICK);
++         break;
++     case 3:
++         sc_start(&sd->bl, &sd->bl, SC_SMOKE_AZUR, 100, 0, INFINITE_TICK);
++         break;
++     case 4:
++         sc_start(&sd->bl, &sd->bl, SC_SMOKE_ASCENSION, 100, 0, INFINITE_TICK);
++         break;
++     }
++ 
++     // Limpa flags
++     sd->bonus.smoke_gear_prog = 0;
++     sd->sc.option &= ~OPTION_SMOKE;
++     clif_changeoption(&sd->bl);
++ }
++ 
++ void CheckSetBonus(map_session_data* sd)
++ {
++     if (!sd)
++         return;
++ 
++     bool has_smoke_combo = false;
++ 
++     for (int i = 0; i < EQI_MAX; ++i) {
++         if (sd->equip_index[i] < 0)
++             continue;
++ 
++         struct item& it = sd->inventory.u.items_inventory[sd->equip_index[i]];
++         std::shared_ptr<item_data> data = item_db.find(it.nameid);
++         if (!data)
++             continue;
++ 
++         for (const auto& combo : data->combos) {
++             if (!combo)
++                 continue;
++ 
++             if (!combo->smoke)
++                 continue;
++ 
++             bool has_all = true;
++             for (const auto& combo_item : combo->nameid) {
++                 if (!pc_iswearing(sd, combo_item)) {
++                     has_all = false;
++                     break;
++                 }
++             }
++ 
++             if (has_all) {
++                 has_smoke_combo = true;
++                 sd->bonus.smoke_gear_prog = combo->id;
++                 break;
++             }
++         }
++ 
++         if (has_smoke_combo) {
++             if (!pc_isSmokeGear(sd)) {
++                 sd->sc.option |= OPTION_SMOKE;
++                 clif_changeoption(&sd->bl);
++             }
++         } else {
++             if (pc_isSmokeGear(sd)) {
++                 sd->sc.option &= ~OPTION_SMOKE;
++                 clif_changeoption(&sd->bl);
++             }
++         }
++     }
++ 
++     if (has_smoke_combo) {
++         if (!status_is_stateicon_active(sd, SI_SMOKE)) {
++             clif_status_load(&sd->bl, SI_SMOKE, 1);
++         }
++     } else {
++         if (status_is_stateicon_active(sd, SI_SMOKE)) {
++             status_change_end(&sd->bl, SC_SMOKE, INVALID_TIMER);
++         }
++     }
++ }
++ 
++ // Hook para chamar quando o player troca equipamento
++ void OnPlayerEquipChange(map_session_data* sd)
++ {
++     CheckSetBonus(sd);
++ }
+
+*** src/map/pc.hpp
++ #define OPTION_SMOKE 0x40000000
++ #define pc_isSmokeGear(sd) ((sd)->sc.option & OPTION_SMOKE)

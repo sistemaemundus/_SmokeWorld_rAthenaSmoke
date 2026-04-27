@@ -1,0 +1,45 @@
+// Criado pelo Alek Emundus
+
+-	script	Buff	-1,{
+	OnInit:
+		bindatcmd "buff",strnpcinfo(0) + "::OnAtcommand";
+		end;
+	OnAtcommand:
+		.@Delay = 120;	// Buff delay em segundos
+		.@DelayVIP = 60; // Buff delay em segundos, pra VIP
+		//@Buff_CD = gettimetick(2); // esse salva o horário usado
+		if(@Buff_CD + .@Delay > gettimetick(2)) { // Esse verifica se o horário usado + 90s já passaram
+			dispbottom "Você precisa esperar " + (@Buff_CD + .@Delay - gettimetick(2)) + " segundos para usar novamente.";
+			end;
+		} else if(getgroupid() > 0 && @Buff_CD + .@DelayVIP > gettimetick(2)) {
+			dispbottom "Você precisa esperar " + (@Buff_CD + .DelayVIP - gettimetick(2)) + " segundos para usar novamente.";
+			end;
+		}
+		if ((getgroupid() > 0)) {
+			specialeffect2 EF_HEAL2;
+			percentheal 100,100;
+			healap 200;
+			specialeffect2 EF_INCAGILITY;
+			sc_start SC_INCREASEAGI,240000,10;
+			specialeffect2 EF_BLESSING;
+			sc_start SC_BLESSING,240000,10;
+			sc_start SC_IMPOSITIO,240000,5;
+			specialeffect2 EF_MAGNIFICAT;
+			sc_start SC_MAGNIFICAT,240000,5;
+			specialeffect2 EF_ASSUMPTIO;
+			sc_start SC_ASSUMPTIO,240000,5;
+			@Buff_CD = gettimetick(2);
+			end;
+		} else {
+			specialeffect2 EF_HEAL2;
+			percentheal 100,100;
+			healap 200;
+			specialeffect2 EF_INCAGILITY;
+			sc_start SC_INCREASEAGI,240000,10;
+			specialeffect2 EF_BLESSING;
+			sc_start SC_BLESSING,240000,10;
+			@Buff_CD = gettimetick(2);
+			end;
+		}
+		end;   
+}

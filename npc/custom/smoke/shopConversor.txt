@@ -1,0 +1,14 @@
+// Criado por Alek Emundus
+// comando @conversores
+// abre a para comprar conversores elementais
+
+-	shop	ConversorShop	-1,12114:5000,12115:5000,12116:5000,12117:5000
+
+-	script	ShopConversor	-1,{
+	OnInit:
+		bindatcmd "conversores",strnpcinfo(0) + "::OnAtcommand";
+		end;
+	OnAtcommand:
+		callshop "ConversorShop";
+		end;
+}

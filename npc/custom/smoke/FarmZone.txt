@@ -1,0 +1,129 @@
+//===== rAthena Script
+//= Modificado & traduzido por Alek Emundus
+
+prontera,169,173,4	script	Farm Zone	660,{
+function	RandomizeItem;
+
+while( 1 ){
+	mes "[Farm Zone]";
+	mes "Como posso te ajudar?";
+switch( select( "- Informação:- Farmar Itens" )){
+Case 1:
+	clear;
+	mes "[Farm Zone]";
+	mes "Isso é uma Farm Zone.";
+	mes "Você pode Caçar Monstros dentro desta sala.";
+	mes "Cada monstro lhe dara itens aleatorios.";
+	next;
+	mes "Mas há algumas condições..";
+	mes "Você so pode entrar ^FF0000uma vez a cada "+.RoomCleanMin+" minutos por vez.^000000";
+	mes "E máximo de ^FF0000"+.MaxPlayers+" Players por "+.RoomCleanMin+" Minutos.^000000";
+	mes "Limite máximo de farm: ^FF0000"+.MaxItemLimit+"^000000";
+	next;
+	mes "Acontecerá a ^FF0000Limpa da Sala^000000 de tempo em tempo...";
+	mes "Todos os jogadores serão expulsos, será seu azar se acontecer com você lá dentro...";
+	mes "^FF0000O atraso ainda será aplicado mesmo que você entre por apenas 1 segundo..^000000";
+	next;
+	break;
+
+Case 2:
+
+	if( #HuntRoomDelay > gettimetick(2) ){
+		set .last,#HuntRoomDelay - gettimetick(2);
+		set .@min,  .last % ( 24 * 3600 ) % 3600 / (60);
+		mes "Espere por ^FF0000"+.@min+" Minutos^000000.";
+		close;
+	}else if( getarraysize( .Hunter ) >= .MaxPlayers ){
+		mes "Atualmente a sala está lotada, volte depois.";
+		close;
+	}else{
+		warp .Map$,0,0;
+		set .Hunter[getarraysize( .Hunter )],strcharinfo(0);
+		set #HuntRoomDelay,gettimetick(2) + ( .DelayMin * 60 );
+		set #FarmHunt,0;
+		end;
+		}
+	}
+}
+
+OnInit:
+// Maximum Player can join per X Minutes.
+set .MaxPlayers,10;
+// Adding X Minutes of Delay before can go in again.
+set .DelayMin,0;
+// Maximum Hunt Limit per round inside the Zone.
+set .MaxItemLimit,200;
+// Map that will be used in thos Zone.
+set .Map$,"ordeal_1-1";
+// Clear Map Every X Minutes.
+set .RoomCleanMin,5;
+// Quantidade de mobs Habitante/Residente.
+set .MobResident,100;
+// Quantidade de mobs Guardião/Guardian.
+set .MobGuardian,2;
+// Mapflag Initialization
+//setmapflag .Map$,mf_nogo;
+setmapflag .Map$,mf_nomobloot;
+setmapflag .Map$,mf_nomvploot;
+setmapflag .Map$,mf_nowarpto;
+//setmapflag .Map$,mf_nochat;
+setmapflag .Map$,mf_novending;
+//setmapflag .Map$,mf_nocommand,60;
+//setmapflag .Map$,mf_nogo;
+setmapflag .Map$,mf_nojobexp;
+setmapflag .Map$,mf_nobaseexp;
+
+while( 1 ){
+	killmonster .Map$,"All";
+	mapwarp .Map$,"prontera",155,181;
+	monster .Map$,0,0,"[ Farm Zone ] Habitante",-1,.MobResident,strnpcinfo(0)+"::OnNormalKill";
+	monster .Map$,0,0,"[ Farm Zone ] Guardião",-3,.MobGuardian,strnpcinfo(0)+"::OnBossKill";
+	deletearray .Hunter,getarraysize( .Hunter );
+	//announce "[ Farm Zone ] : Farm Zone limpa, outros 10 jogadores podem se juntar.",bc_blue;
+	sleep ( .RoomCleanMin * 60000 );
+	mapannounce .Map$,"[ Farm Zone ] : Mapa limpo... Todos players foram expulsos.",0;
+	killmonster .Map$,"All";
+	sleep 3000;
+	}
+end;
+
+OnNormalKill:
+//RandomizeItem( 0,rand(1,5) );
+RandomizeItem( 0,1 );
+monster .Map$,0,0,"--ja--",-1,1,strnpcinfo(0)+"::OnNormalKill";
+set #FARMCOIN, #FARMCOIN + 1;
+dispbottom "[ Farm Zone ] : 1 FarmCoin ganha, total: "+#FARMCOIN;
+end;
+
+OnBossKill:
+//RandomizeItem( 1,rand(1,3) );
+RandomizeItem( 1,1 );
+monster .Map$,0,0,"--ja--",-3,1,strnpcinfo(0)+"::OnBossKill";
+set #FARMCOIN, #FARMCOIN + 10;
+dispbottom "[ Farm Zone ] : 10 FarmCoin ganha, total: "+#FARMCOIN;
+end;
+
+// Function that used to Generate Random Items
+
+function	RandomizeItem	{
+set #FarmHunt,#FarmHunt + getarg(1);
+
+// Normal Monster in Zone Drops Lists
+if( getarg(0) == 0 ) setarray .ItemList[0],12710,12596,100233,12437,100232;
+// Normal Boss in Zone Drops Lists
+if( getarg(0) == 1 ) setarray .ItemList[0],840095,840096;
+
+for( set .@i,1; .@i <= getarg(1); set .@i,.@i + 1 ){
+	getitem .ItemList[ rand( getarraysize( .ItemList ) ) ],1;
+	}
+deletearray .ItemList,getarraysize( .ItemList );
+dispbottom "[ Farm Zone ] : Farmou "+#FarmHunt+" / "+.MaxItemLimit+" Itens";
+if( #FarmHunt >= .MaxItemLimit ){
+	message strcharinfo(0),"Chegou ao limite, poderá entrar novamente depois.";
+	sleep2 2000;
+	warp "prontera",155,181;
+	}
+return;
+}
+	
+}

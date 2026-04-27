@@ -1,0 +1,13 @@
+-	script	storage2Vip	-1,{
+	OnInit:
+		bindatcmd "storage2",strnpcinfo(0) + "::OnAtcommand";
+		end;
+	OnAtcommand:
+	if (getgroupid() >= 5) {
+		openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+	} else {
+		mes "Lamento, seu VIP acabou!";
+		close2;
+	}
+	end;
+}

@@ -1,0 +1,267 @@
+//===== rAthena Script =======================================
+//= Encantador Ascended Smoke
+//===== By ===================================================
+//= Custom for Smoke Ascended equipment
+//===== Description ==========================================
+//= Enchant Smoke Ascended Armor, Garment, Shoes with:
+//= - 1 random BASE enchant (STR/DEX/INT/VIT/AGI/LUK/HP/SP)
+//= - 1 random CORE enchant (Ruptura/Persistencia/Elemental/Crit/Aspd/Cast)
+//= - 1 selected SPECIAL enchant (Physical/Ranged/Magic/Support/Hybrid/ElementalClass)
+//= Costs configurable for each action.
+//============================================================
+
+mall01,106,101,5	script	Encantador Ascended Smoke	618,{
+
+function PayCost;
+
+mes .n$;
+mes "Bem-vindo, "+strcharinfo(0)+"!";
+mes "Posso aplicar encantamentos especiais em sua Armadura, Manto e Sapatos Smoke Ascended.";
+mes "Cada equipamento pode receber:";
+mes "^FF00001 Encantamento BASE (aleatório)^000000";
+mes "^00FF001 Encantamento CORE (aleatório)^000000";
+mes "^0000FF1 Encantamento SPECIAL (à sua escolha)^000000";
+mes "Você pode roletar os BASE e CORE, e trocar o SPECIAL quando desejar.";
+next;
+
+switch(select("- Armadura Smoke Ascended:- Manto Smoke Ascended:- Sapatos Smoke Ascended:- Informações")) {
+	case 1:
+		callsub L_Enchant, EQI_ARMOR, 840215, "Armadura Smoke Ascended";
+		break;
+	case 2:
+		callsub L_Enchant, EQI_GARMENT, 840216, "Manto Smoke Ascended";
+		break;
+	case 3:
+		callsub L_Enchant, EQI_SHOES, 840217, "Sapatos Smoke Ascended";
+		break;
+	case 4:
+		mes .n$;
+		mes "Informações:";
+		mes "BASE: Força, Destreza, Inteligência, Vitalidade, Agilidade, Sorte, HP Boost, SP Boost.";
+		mes "CORE: Ruptura, Persistência, Elemental, Crítica, Velocidade, Arcana Fluida.";
+		mes "SPECIAL: Destruição Física, Tiro Preciso, Arcana, Divina, Caos, Elemental Suprema.";
+		mes "Custos configuráveis pelo administrador.";
+		close;
+}
+
+end;
+
+L_Enchant:
+	set .@part, getarg(0);
+	set .@req_id, getarg(1);
+	set .@item_name$, getarg(2);
+
+	// Check if equipment is equipped
+	if (getequipid(.@part) != .@req_id) {
+		mes .n$;
+		mes "Você não está equipando um(a) "+.@item_name$+".";
+		close;
+	}
+
+	// Get current enchants from card slots (slot 2,3,4)
+	set .@id, getequipid(.@part);
+	set .@ref, getequiprefinerycnt(.@part);
+	set .@c1, getequipcardid(.@part, 0);   // normal card slot
+	set .@c2, getequipcardid(.@part, 1);   // slot 2 = BASE
+	set .@c3, getequipcardid(.@part, 2);   // slot 3 = CORE
+	set .@c4, getequipcardid(.@part, 3);   // slot 4 = SPECIAL
+
+	// Identify current enchants
+	set .@base_id, .@c2;
+	set .@core_id, .@c3;
+	set .@spec_id, .@c4;
+
+	// Display current enchants
+	mes .n$;
+	mes "Equipamento: "+.@item_name$;
+	mes "Refinamento: +"+.@ref;
+	mes "Encantamentos atuais:";
+	if (.@base_id) mes "  BASE: ^FF0000"+getitemname(.@base_id)+"^000000";
+	else mes "  BASE: ^777777nenhum^000000";
+	if (.@core_id) mes "  CORE: ^00FF00"+getitemname(.@core_id)+"^000000";
+	else mes "  CORE: ^777777nenhum^000000";
+	if (.@spec_id) mes "  SPECIAL: ^0000FF"+getitemname(.@spec_id)+"^000000";
+	else mes "  SPECIAL: ^777777nenhum^000000";
+	next;
+
+	// Build menu options
+	set .@menu$, "";
+	if (.@base_id) .@menu$ = .@menu$ + "- Rolar Encantamento BASE (atual)";
+	else .@menu$ = .@menu$ + "- Aplicar Encantamento BASE (aleatório)";
+	.@menu$ = .@menu$ + ":";
+	if (.@core_id) .@menu$ = .@menu$ + "- Rolar Encantamento CORE (atual)";
+	else .@menu$ = .@menu$ + "- Aplicar Encantamento CORE (aleatório)";
+	.@menu$ = .@menu$ + ":";
+	.@menu$ = .@menu$ + "- Selecionar/Substituir Encantamento SPECIAL";
+	if (.@base_id || .@core_id || .@spec_id) .@menu$ = .@menu$ + ":- Limpar todos os encantamentos";
+	.@menu$ = .@menu$ + ":- Cancelar";
+
+	set .@opt, select(.@menu$);
+
+	switch(.@opt) {
+		case 1: // BASE
+			// Charge cost
+			if (!PayCost(.cost_base_type, .cost_base_amount, "BASE")) close;
+			// Choose random BASE
+			set .@new_id, .base_ids[ rand( getarraysize(.base_ids) ) ];
+			mes .n$;
+			mes "Novo Encantamento BASE: ^FF0000"+getitemname(.@new_id)+"^000000";
+			// Apply
+			callsub L_ApplyEnchants, .@part, .@id, .@ref, .@c1, .@new_id, .@core_id, .@spec_id;
+			mes "Encantamento aplicado com sucesso!";
+			break;
+		case 2: // CORE
+			if (!PayCost(.cost_core_type, .cost_core_amount, "CORE")) close;
+			set .@new_id, .core_ids[ rand( getarraysize(.core_ids) ) ];
+			mes .n$;
+			mes "Novo Encantamento CORE: ^00FF00"+getitemname(.@new_id)+"^000000";
+			callsub L_ApplyEnchants, .@part, .@id, .@ref, .@c1, .@base_id, .@new_id, .@spec_id;
+			mes "Encantamento aplicado com sucesso!";
+			break;
+		case 3: // SPECIAL
+			if (!PayCost(.cost_spec_type, .cost_spec_amount, "SPECIAL")) close;
+			// Show list of SPECIAL enchants
+			mes .n$;
+			mes "Escolha o Encantamento SPECIAL que deseja:";
+			set .@spec_menu$, "";
+			for (set .@i, 0; .@i < getarraysize(.spec_names$); .@i++) {
+				.@spec_menu$ = .@spec_menu$ + "- " + .spec_names$[.@i];
+				if (.@i < getarraysize(.spec_names$)-1) .@spec_menu$ = .@spec_menu$ + ":";
+			}
+			next;
+			set .@spec_choice, select(.@spec_menu$) - 1;
+			set .@new_id, .spec_ids[.@spec_choice];
+			mes .n$;
+			mes "Você escolheu: ^0000FF"+getitemname(.@new_id)+"^000000";
+			callsub L_ApplyEnchants, .@part, .@id, .@ref, .@c1, .@base_id, .@core_id, .@new_id;
+			mes "Encantamento aplicado com sucesso!";
+			break;
+		case 4: // Reset all (if available)
+			if (!PayCost(.cost_reset_type, .cost_reset_amount, "resetar todos")) close;
+			mes .n$;
+			mes "Todos os encantamentos serão removidos.";
+			next;
+			mes .n$;
+			mes "Confirma?";
+			if (select("- Sim:- Não") == 1) {
+				callsub L_ApplyEnchants, .@part, .@id, .@ref, .@c1, 0, 0, 0;
+				mes "Encantamentos removidos.";
+			} else {
+				mes "Operação cancelada.";
+			}
+			break;
+		case 5: // Cancel
+			mes .n$;
+			mes "Até mais!";
+			close;
+	}
+	close;
+	end;
+
+L_ApplyEnchants:
+	// arg0: part, arg1: item id, arg2: refine, arg3: card1, arg4: card2 (BASE), arg5: card3 (CORE), arg6: card4 (SPECIAL)
+	// Get current grade
+	set .@grade, getenchantgrade(getarg(0));
+	// Remove current equipment
+	delequip getarg(0);
+	// Prepare empty random option arrays (5 zeros each)
+	setarray .@ropt_id[0], 0,0,0,0,0;
+	setarray .@ropt_val[0], 0,0,0,0,0;
+	setarray .@ropt_param[0], 0,0,0,0,0;
+	// Re-equip with new cards and preserve grade
+	getitem4 getarg(1), 1, 1, getarg(2), 0, getarg(3), getarg(4), getarg(5), getarg(6), .@grade, .@ropt_id, .@ropt_val, .@ropt_param;
+	// Equip it back
+	equip getarg(1);
+	return;
+
+// Payment function
+function PayCost {
+	// arg0: type (0=free,1=zeny,2=cashpoints,3=item), arg1: amount, arg2: description
+	if (getarg(0) == 0) return 1;
+	if (getarg(0) == 1) {
+		if (Zeny < getarg(1)) {
+			mes "Você não tem Zeny suficiente para "+getarg(2)+"! Precisa de "+getarg(1)+" Zeny.";
+			return 0;
+		}
+		Zeny -= getarg(1);
+		return 1;
+	}
+	if (getarg(0) == 2) {
+		if (#CASHPOINTS < getarg(1)) {
+			mes "Você não tem Cash Points suficientes para "+getarg(2)+"! Precisa de "+getarg(1)+" Cash Points.";
+			return 0;
+		}
+		#CASHPOINTS -= getarg(1);
+		return 1;
+	}
+	if (getarg(0) >= 501) {
+		if (countitem(getarg(0)) < getarg(1)) {
+			mes "Você não tem "+getarg(1)+"x "+getitemname(getarg(0))+" para "+getarg(2)+".";
+			return 0;
+		}
+		delitem getarg(0), getarg(1);
+		return 1;
+	}
+	return 1;
+}
+
+OnInit:
+	set .n$, "[Encantador Ascended Smoke]";
+
+	// ===== COST CONFIGURATION =====
+	// BASE enchant cost
+	set .cost_base_type, 1;    // 0=free, 1=zeny, 2=cashpoints, 501+=item id
+	set .cost_base_amount, 500000; // amount
+
+	// CORE enchant cost
+	set .cost_core_type, 1;
+	set .cost_core_amount, 1000000;
+
+	// SPECIAL enchant cost
+	set .cost_spec_type, 1;
+	set .cost_spec_amount, 2000000;
+
+	// Reset all cost
+	set .cost_reset_type, 1;
+	set .cost_reset_amount, 2500000;
+
+	// ===== ENCHANT LISTS =====
+	// BASE (840195-840202)
+	setarray .base_ids[0],
+		840195,  // STR
+		840196,  // DEX
+		840197,  // INT
+		840198,  // VIT
+		840199,  // AGI
+		840200,  // LUK
+		840201,  // HP Boost
+		840202;  // SP Boost
+
+	// CORE (840203-840208)
+	setarray .core_ids[0],
+		840203,  // Ruptura
+		840204,  // Persistencia
+		840205,  // Elemental
+		840206,  // Crit
+		840207,  // Aspd
+		840208;  // Cast
+
+	// SPECIAL (840209-840214)
+	setarray .spec_ids[0],
+		840209,  // Physical
+		840210,  // Ranged
+		840211,  // Magic
+		840212,  // Support
+		840213,  // Hybrid
+		840214;  // ElementalClass
+
+	setarray .spec_names$[0],
+		"Destruição Física",
+		"Tiro Preciso",
+		"Arcana",
+		"Divina",
+		"Caos",
+		"Elemental Suprema";
+
+	end;
+}

@@ -1,0 +1,243 @@
+id_bonus: 6 / name_bonus: bMaxHP / bonus_enum: SP_MAXHP / descricao: MaxHP + n
+id_bonus: 8 / name_bonus: bMaxSP / bonus_enum: SP_MAXSP / descricao: MaxSP + n
+id_bonus: 233 / name_bonus: bMaxAP / bonus_enum: SP_MAXAP / descricao: MaxAP + n
+id_bonus: 13 / name_bonus: bStr / bonus_enum: SP_STR / descricao: STR + n
+id_bonus: 14 / name_bonus: bAgi / bonus_enum: SP_AGI / descricao: AGI + n
+id_bonus: 15 / name_bonus: bVit / bonus_enum: SP_VIT / descricao: VIT + n
+id_bonus: 16 / name_bonus: bInt / bonus_enum: SP_INT / descricao: INT + n
+id_bonus: 17 / name_bonus: bDex / bonus_enum: SP_DEX / descricao: DEX + n
+id_bonus: 18 / name_bonus: bLuk / bonus_enum: SP_LUK / descricao: LUK + n
+id_bonus: 219 / name_bonus: bPow / bonus_enum: SP_POW / descricao: POW + n
+id_bonus: 220 / name_bonus: bSta / bonus_enum: SP_STA / descricao: STA + n
+id_bonus: 221 / name_bonus: bWis / bonus_enum: SP_WIS / descricao: WIS + n
+id_bonus: 222 / name_bonus: bSpl / bonus_enum: SP_SPL / descricao: SPL + n
+id_bonus: 223 / name_bonus: bCon / bonus_enum: SP_CON / descricao: CON + n
+id_bonus: 224 / name_bonus: bCrt / bonus_enum: SP_CRT / descricao: CRT + n
+id_bonus: 41 / name_bonus: bAtk / bonus_enum: SP_ATK1 / descricao: ATK + n (unofficial)
+id_bonus: 42 / name_bonus: bAtk2 / bonus_enum: SP_ATK2 / descricao: ATK2 + n
+id_bonus: 45 / name_bonus: bDef / bonus_enum: SP_DEF1 / descricao: Equipment DEF + n
+id_bonus: 46 / name_bonus: bDef2 / bonus_enum: SP_DEF2 / descricao: VIT based DEF + n
+id_bonus: 47 / name_bonus: bMdef / bonus_enum: SP_MDEF1 / descricao: Equipment MDEF + n
+id_bonus: 48 / name_bonus: bMdef2 / bonus_enum: SP_MDEF2 / descricao: INT based MDEF + n
+id_bonus: 49 / name_bonus: bHit / bonus_enum: SP_HIT / descricao: Hit + n
+id_bonus: 50 / name_bonus: bFlee / bonus_enum: SP_FLEE1 / descricao: Flee + n
+id_bonus: 51 / name_bonus: bFlee2 / bonus_enum: SP_FLEE2 / descricao: Perfect Dodge + n
+id_bonus: 52 / name_bonus: bCritical / bonus_enum: SP_CRITICAL / descricao: Critical + n
+id_bonus: 53 / name_bonus: bAspd / bonus_enum: SP_ASPD / descricao: Attack speed + n
+id_bonus: 59 / name_bonus: bFame / bonus_enum: SP_FAME / descricao: (bFame)
+id_bonus: 60 / name_bonus: bUnbreakable / bonus_enum: SP_UNBREAKABLE / descricao: Reduces the break chance of all equipped equipment by n%
+id_bonus: 225 / name_bonus: bPatk / bonus_enum: SP_PATK / descricao: PAtk + n
+id_bonus: 226 / name_bonus: bSmatk / bonus_enum: SP_SMATK / descricao: SMatk + n
+id_bonus: 229 / name_bonus: bHplus / bonus_enum: SP_HPLUS / descricao: HPlus + n
+id_bonus: 230 / name_bonus: bCrate / bonus_enum: SP_CRATE / descricao: CRate + n
+id_bonus: 227 / name_bonus: bRes / bonus_enum: SP_RES / descricao: Res + n
+id_bonus: 228 / name_bonus: bMres / bonus_enum: SP_MRES / descricao: MRes + n
+id_bonus: 1000 / name_bonus: bAtkRange / bonus_enum: SP_ATTACKRANGE / descricao: Attack range + n
+id_bonus: 1001 / name_bonus: bAtkEle / bonus_enum: SP_ATKELE / descricao: Gives the player's attacks element e
+id_bonus: 1002 / name_bonus: bDefEle / bonus_enum: SP_DEFELE / descricao: Gives the player's defense element e
+id_bonus: 1003 / name_bonus: bCastrate / bonus_enum: SP_CASTRATE / descricao: Skill cast time rate + n%. (If RENEWAL_CAST is defined, this bonus is equal to bVariableCastrate)
+id_bonus: 1004 / name_bonus: bMaxHPrate / bonus_enum: SP_MAXHPRATE / descricao: MaxHP + n%
+id_bonus: 1005 / name_bonus: bMaxSPrate / bonus_enum: SP_MAXSPRATE / descricao: MaxSP + n%
+id_bonus: 1100 / name_bonus: bMaxAPrate / bonus_enum: SP_MAXAPRATE / descricao: MaxAP + n%
+id_bonus: 1006 / name_bonus: bUseSPrate / bonus_enum: SP_SPRATE / descricao: SP consumption + n%
+id_bonus: 1007 / name_bonus: bAddEle / bonus_enum: SP_ADDELE / descricao: (bAddEle)
+id_bonus: 1008 / name_bonus: bAddRace / bonus_enum: SP_ADDRACE / descricao: (bAddRace)
+id_bonus: 1009 / name_bonus: bAddSize / bonus_enum: SP_ADDSIZE / descricao: (bAddSize)
+id_bonus: 1010 / name_bonus: bSubEle / bonus_enum: SP_SUBELE / descricao: (bSubEle)
+id_bonus: 1011 / name_bonus: bSubRace / bonus_enum: SP_SUBRACE / descricao: (bSubRace)
+id_bonus: 1012 / name_bonus: bAddEff / bonus_enum: SP_ADDEFF / descricao: (bAddEff)
+id_bonus: 1013 / name_bonus: bResEff / bonus_enum: SP_RESEFF / descricao: (bResEff)
+id_bonus: 1014 / name_bonus: bBaseAtk / bonus_enum: SP_BASE_ATK / descricao: Basic attack power + n
+id_bonus: 1015 / name_bonus: bAspdRate / bonus_enum: SP_ASPD_RATE / descricao: Attack speed + n%
+id_bonus: 1016 / name_bonus: bHPrecovRate / bonus_enum: SP_HP_RECOV_RATE / descricao: Natural HP recovery ratio + n%
+id_bonus: 1017 / name_bonus: bSPrecovRate / bonus_enum: SP_SP_RECOV_RATE / descricao: Natural SP recovery ratio + n%
+id_bonus: 1018 / name_bonus: bSpeedRate / bonus_enum: SP_SPEED_RATE / descricao: Movement speed + n% (only the highest among all is applied, won't be stacked with SC_SPEEDUP0, SC_SPEEDUP1)
+id_bonus: 1019 / name_bonus: bCriticalDef / bonus_enum: SP_CRITICAL_DEF / descricao: Decreases the chance of being hit by critical hits by n%
+id_bonus: 1020 / name_bonus: bNearAtkDef / bonus_enum: SP_NEAR_ATK_DEF / descricao: Adds n% damage reduction against melee physical attacks
+id_bonus: 1021 / name_bonus: bLongAtkDef / bonus_enum: SP_LONG_ATK_DEF / descricao: Adds n% damage reduction against ranged physical attacks
+id_bonus: 1022 / name_bonus: bDoubleRate / bonus_enum: SP_DOUBLE_RATE / descricao: Double Attack probability n% (works with all weapons | only the highest among all is applied)
+id_bonus: 1023 / name_bonus: bDoubleAddRate / bonus_enum: SP_DOUBLE_ADD_RATE / descricao: Double Attack probability + n% (works with all weapons)
+id_bonus: 1024 / name_bonus: bSkillHeal / bonus_enum: SP_SKILL_HEAL / descricao: (bSkillHeal)
+id_bonus: 1025 / name_bonus: bMatkRate / bonus_enum: SP_MATK_RATE / descricao: Magical attack power + n%
+id_bonus: 2084 / name_bonus: bWeaponMatkRate / bonus_enum: SP_WEAPON_MATK_RATE / descricao: Weapon Magical ATK + n% (renewal mode only)
+id_bonus: 1026 / name_bonus: bIgnoreDefEle / bonus_enum: SP_IGNORE_DEF_ELE / descricao: Disregard DEF against enemies of element e
+id_bonus: 1027 / name_bonus: bIgnoreDefRace / bonus_enum: SP_IGNORE_DEF_RACE / descricao: Disregard DEF against enemies of race r
+id_bonus: 1028 / name_bonus: bAtkRate / bonus_enum: SP_ATK_RATE / descricao: ATK + n% that won't interfere with Damage modifier and SC_EDP (renewal mode only)
+id_bonus: 2083 / name_bonus: bWeaponAtkRate / bonus_enum: SP_WEAPON_ATK_RATE / descricao: Weapon ATK + n%
+id_bonus: 1029 / name_bonus: bSpeedAddRate / bonus_enum: SP_SPEED_ADDRATE / descricao: Movement speed + n%
+id_bonus: 1030 / name_bonus: bSPRegenRate / bonus_enum: SP_SP_REGEN_RATE / descricao: (bSPRegenRate)
+id_bonus: 1031 / name_bonus: bMagicAtkDef / bonus_enum: SP_MAGIC_ATK_DEF / descricao: Adds n% damage reduction against magical attacks
+id_bonus: 1032 / name_bonus: bMiscAtkDef / bonus_enum: SP_MISC_ATK_DEF / descricao: Adds n% damage reduction against MISC attacks (traps, falcon, ...)
+id_bonus: 1033 / name_bonus: bIgnoreMdefEle / bonus_enum: SP_IGNORE_MDEF_ELE / descricao: Disregard MDEF against enemies of element e
+id_bonus: 1034 / name_bonus: bIgnoreMdefRace / bonus_enum: SP_IGNORE_MDEF_RACE / descricao: Disregard MDEF against enemies of race r
+id_bonus: 1035 / name_bonus: bMagicAddEle / bonus_enum: SP_MAGIC_ADDELE / descricao: (bMagicAddEle)
+id_bonus: 1036 / name_bonus: bMagicAddRace / bonus_enum: SP_MAGIC_ADDRACE / descricao: (bMagicAddRace)
+id_bonus: 1037 / name_bonus: bMagicAddSize / bonus_enum: SP_MAGIC_ADDSIZE / descricao: (bMagicAddSize)
+id_bonus: 1038 / name_bonus: bPerfectHitRate / bonus_enum: SP_PERFECT_HIT_RATE / descricao: On-target impact attack probability n% (only the highest among all is applied)
+id_bonus: 1039 / name_bonus: bPerfectHitAddRate / bonus_enum: SP_PERFECT_HIT_ADD_RATE / descricao: On-target impact attack probability + n%
+id_bonus: 1040 / name_bonus: bCriticalRate / bonus_enum: SP_CRITICAL_RATE / descricao: Critical + n%
+id_bonus: 1041 / name_bonus: bGetZenyNum / bonus_enum: SP_GET_ZENY_NUM / descricao: (bGetZenyNum)
+id_bonus: 1042 / name_bonus: bAddGetZenyNum / bonus_enum: SP_ADD_GET_ZENY_NUM / descricao: (bAddGetZenyNum)
+id_bonus: 1043 / name_bonus: bAddDamageClass / bonus_enum: SP_ADD_DAMAGE_CLASS / descricao: (bAddDamageClass)
+id_bonus: 1044 / name_bonus: bAddMagicDamageClass / bonus_enum: SP_ADD_MAGIC_DAMAGE_CLASS / descricao: (bAddMagicDamageClass)
+id_bonus: 1045 / name_bonus: bAddDefMonster / bonus_enum: SP_ADD_DEF_MONSTER / descricao: (bAddDefMonster)
+id_bonus: 1046 / name_bonus: bAddMdefMonster / bonus_enum: SP_ADD_MDEF_MONSTER / descricao: (bAddMdefMonster)
+id_bonus: 1047 / name_bonus: bAddMonsterDropItem / bonus_enum: SP_ADD_MONSTER_DROP_ITEM / descricao: (bAddMonsterDropItem)
+id_bonus: 1048 / name_bonus: bDefRatioAtkEle / bonus_enum: SP_DEF_RATIO_ATK_ELE / descricao: Deals more damage to enemies of element e with higher defense
+id_bonus: 1049 / name_bonus: bDefRatioAtkRace / bonus_enum: SP_DEF_RATIO_ATK_RACE / descricao: Deals more damage to enemies of race r with higher defense
+id_bonus: 1050 / name_bonus: bUnbreakableGarment / bonus_enum: SP_UNBREAKABLE_GARMENT / descricao: (bUnbreakableGarment)
+id_bonus: 1051 / name_bonus: bHitRate / bonus_enum: SP_HIT_RATE / descricao: Hit + n%
+id_bonus: 1052 / name_bonus: bFleeRate / bonus_enum: SP_FLEE_RATE / descricao: Flee + n%
+id_bonus: 1053 / name_bonus: bFlee2Rate / bonus_enum: SP_FLEE2_RATE / descricao: Perfect Dodge + n%
+id_bonus: 1054 / name_bonus: bDefRate / bonus_enum: SP_DEF_RATE / descricao: Equipment DEF + n%
+id_bonus: 1055 / name_bonus: bDef2Rate / bonus_enum: SP_DEF2_RATE / descricao: VIT based DEF + n%
+id_bonus: 1056 / name_bonus: bMdefRate / bonus_enum: SP_MDEF_RATE / descricao: Equipment MDEF + n%
+id_bonus: 1057 / name_bonus: bMdef2Rate / bonus_enum: SP_MDEF2_RATE / descricao: INT based MDEF + n%
+id_bonus: 1093 / name_bonus: bPAtkRate / bonus_enum: SP_PATK_RATE / descricao: PAtk + n%
+id_bonus: 1094 / name_bonus: bSMatkRate / bonus_enum: SP_SMATK_RATE / descricao: SMatk + n%
+id_bonus: 1095 / name_bonus: bResRate / bonus_enum: SP_RES_RATE / descricao: Res + n%
+id_bonus: 1096 / name_bonus: bMResRate / bonus_enum: SP_MRES_RATE / descricao: MRes + n%
+id_bonus: 1097 / name_bonus: bHPlusRate / bonus_enum: SP_HPLUS_RATE / descricao: HPlus + n%
+id_bonus: 1098 / name_bonus: bCRateRate / bonus_enum: SP_CRATE_RATE / descricao: CRate + n%
+id_bonus: 1058 / name_bonus: bSplashRange / bonus_enum: SP_SPLASH_RANGE / descricao: Splash attack radius + n (only the highest among all is applied)
+id_bonus: 1059 / name_bonus: bSplashAddRange / bonus_enum: SP_SPLASH_ADD_RANGE / descricao: Splash attack radius + n
+id_bonus: 1060 / name_bonus: bAutoSpell / bonus_enum: SP_AUTOSPELL / descricao: (bAutoSpell)
+id_bonus: 1061 / name_bonus: bHPDrainRate / bonus_enum: SP_HP_DRAIN_RATE / descricao: (bHPDrainRate)
+id_bonus: 1062 / name_bonus: bSPDrainRate / bonus_enum: SP_SP_DRAIN_RATE / descricao: (bSPDrainRate)
+id_bonus: 1063 / name_bonus: bShortWeaponDamageReturn / bonus_enum: SP_SHORT_WEAPON_DAMAGE_RETURN / descricao: Reflects n% of received melee damage back to the enemy that caused it
+id_bonus: 1064 / name_bonus: bLongWeaponDamageReturn / bonus_enum: SP_LONG_WEAPON_DAMAGE_RETURN / descricao: Reflects n% of received ranged damage back to the enemy that caused it
+id_bonus: 1065 / name_bonus: bWeaponComaEle / bonus_enum: SP_WEAPON_COMA_ELE / descricao: (bWeaponComaEle)
+id_bonus: 1066 / name_bonus: bWeaponComaRace / bonus_enum: SP_WEAPON_COMA_RACE / descricao: (bWeaponComaRace)
+id_bonus: 1067 / name_bonus: bAddEff2 / bonus_enum: SP_ADDEFF2 / descricao: (bAddEff2)
+id_bonus: 1068 / name_bonus: bBreakWeaponRate / bonus_enum: SP_BREAK_WEAPON_RATE / descricao: Adds a n/100% chance to break enemy's weapon while attacking (stacks with other break chances)
+id_bonus: 1069 / name_bonus: bBreakArmorRate / bonus_enum: SP_BREAK_ARMOR_RATE / descricao: Adds a n/100% chance to break enemy's armor while attacking (stacks with other break chances)
+id_bonus: 1070 / name_bonus: bAddStealRate / bonus_enum: SP_ADD_STEAL_RATE / descricao: Increases success rate of Steal skill by n/100%
+id_bonus: 1071 / name_bonus: bMagicDamageReturn / bonus_enum: SP_MAGIC_DAMAGE_RETURN / descricao: Adds a n% chance to reflect targetted magic spells back to the enemy that caused it
+id_bonus: 1073 / name_bonus: bAllStats / bonus_enum: SP_ALL_STATS / descricao: STR + n, AGI + n, VIT + n, INT + n, DEX + n, LUK + n
+id_bonus: 1099 / name_bonus: bAllTraitStats / bonus_enum: SP_ALL_TRAIT_STATS / descricao: POW + n, STA + n, WIS + n, SPL + n, CON + n, CRT + n
+id_bonus: 1074 / name_bonus: bAgiVit / bonus_enum: SP_AGI_VIT / descricao: AGI + n, VIT + n
+id_bonus: 1075 / name_bonus: bAgiDexStr / bonus_enum: SP_AGI_DEX_STR / descricao: STR + n, AGI + n, DEX + n
+id_bonus: 1076 / name_bonus: bPerfectHide / bonus_enum: SP_PERFECT_HIDE / descricao: (bPerfectHide)
+id_bonus: 1077 / name_bonus: bNoKnockback / bonus_enum: SP_NO_KNOCKBACK / descricao: (bNoKnockback)
+id_bonus: 1078 / name_bonus: bClassChange / bonus_enum: SP_CLASSCHANGE / descricao: Gives a n/100% chance to change the attacked monster's class with normal attack
+id_bonus: 1079 / name_bonus: bHPDrainValue / bonus_enum: SP_HP_DRAIN_VALUE / descricao: Heals +n HP with a normal attack
+id_bonus: 1080 / name_bonus: bSPDrainValue / bonus_enum: SP_SP_DRAIN_VALUE / descricao: Heals +n SP with a normal attack
+id_bonus: 1081 / name_bonus: bWeaponAtk / bonus_enum: SP_WEAPON_ATK / descricao: (bWeaponAtk)
+id_bonus: 1082 / name_bonus: bWeaponDamageRate / bonus_enum: SP_WEAPON_DAMAGE_RATE / descricao: (bWeaponDamageRate)
+id_bonus: 1083 / name_bonus: bDelayrate / bonus_enum: SP_DELAYRATE / descricao: Increases skill delay by n%
+id_bonus: 1084 / name_bonus: bHPDrainValueRace / bonus_enum: SP_HP_DRAIN_VALUE_RACE / descricao: (bHPDrainValueRace)
+id_bonus: 1085 / name_bonus: bSPDrainValueRace / bonus_enum: SP_SP_DRAIN_VALUE_RACE / descricao: (bSPDrainValueRace)
+id_bonus: 1086 / name_bonus: bIgnoreMdefRaceRate / bonus_enum: SP_IGNORE_MDEF_RACE_RATE / descricao: (bIgnoreMdefRaceRate)
+id_bonus: 1087 / name_bonus: bIgnoreDefRaceRate / bonus_enum: SP_IGNORE_DEF_RACE_RATE / descricao: (bIgnoreDefRaceRate)
+id_bonus: 1088 / name_bonus: bSkillHeal2 / bonus_enum: SP_SKILL_HEAL2 / descricao: (bSkillHeal2)
+id_bonus: 1089 / name_bonus: bAddEffOnSkill / bonus_enum: SP_ADDEFF_ONSKILL / descricao: (bAddEffOnSkill)
+id_bonus: 1090 / name_bonus: bHealPower / bonus_enum: SP_ADD_HEAL_RATE / descricao: Increases heal amount of all heal skills by n%
+id_bonus: 1091 / name_bonus: bHealPower2 / bonus_enum: SP_ADD_HEAL2_RATE / descricao: Increases heal amount if you are healed by any skills by n%
+id_bonus: 0 / name_bonus: bIgnoreResRaceRate / bonus_enum: SP_SP_IGNORE_RES_RACE_RATE / descricao: (bIgnoreResRaceRate)
+id_bonus: 0 / name_bonus: bIgnoreMResRaceRate / bonus_enum: SP_SP_IGNORE_MRES_RACE_RATE / descricao: (bIgnoreMResRaceRate)
+id_bonus: 2000 / name_bonus: bRestartFullRecover / bonus_enum: SP_RESTART_FULL_RECOVER / descricao: (bRestartFullRecover)
+id_bonus: 2001 / name_bonus: bNoCastCancel / bonus_enum: SP_NO_CASTCANCEL / descricao: (bNoCastCancel)
+id_bonus: 2002 / name_bonus: bNoSizeFix / bonus_enum: SP_NO_SIZEFIX / descricao: (bNoSizeFix)
+id_bonus: 2003 / name_bonus: bNoMagicDamage / bonus_enum: SP_NO_MAGIC_DAMAGE / descricao: Adds n% reduction to received magical effect (attack, healing, support spells are all blocked)
+id_bonus: 2004 / name_bonus: bNoWeaponDamage / bonus_enum: SP_NO_WEAPON_DAMAGE / descricao: Adds n% reduction to received physical damage
+id_bonus: 2005 / name_bonus: bNoGemStone / bonus_enum: SP_NO_GEMSTONE / descricao: (bNoGemStone)
+id_bonus: 2006 / name_bonus: bNoCastCancel2 / bonus_enum: SP_NO_CASTCANCEL2 / descricao: (bNoCastCancel2)
+id_bonus: 2007 / name_bonus: bNoMiscDamage / bonus_enum: SP_NO_MISC_DAMAGE / descricao: Adds n% reduction to received misc damage
+id_bonus: 2008 / name_bonus: bUnbreakableWeapon / bonus_enum: SP_UNBREAKABLE_WEAPON / descricao: (bUnbreakableWeapon)
+id_bonus: 2009 / name_bonus: bUnbreakableArmor / bonus_enum: SP_UNBREAKABLE_ARMOR / descricao: (bUnbreakableArmor)
+id_bonus: 2010 / name_bonus: bUnbreakableHelm / bonus_enum: SP_UNBREAKABLE_HELM / descricao: (bUnbreakableHelm)
+id_bonus: 2011 / name_bonus: bUnbreakableShield / bonus_enum: SP_UNBREAKABLE_SHIELD / descricao: (bUnbreakableShield)
+id_bonus: 2107 / name_bonus: bSkillRatio / bonus_enum: SP_SKILL_RATIO / descricao: Adds n to the skillratio of all attacks/skills that use it
+id_bonus: 2095 / name_bonus: bShortAtkRate / bonus_enum: SP_SHORT_ATK_RATE / descricao: Increases damage of short ranged attacks by n%
+id_bonus: 2012 / name_bonus: bLongAtkRate / bonus_enum: SP_LONG_ATK_RATE / descricao: Increases damage of long ranged attacks by n%
+id_bonus: 2013 / name_bonus: bCritAtkRate / bonus_enum: SP_CRIT_ATK_RATE / descricao: Increases critical damage by +n%
+id_bonus: 2014 / name_bonus: bCriticalAddRace / bonus_enum: SP_CRITICAL_ADDRACE / descricao: (bCriticalAddRace)
+id_bonus: 2015 / name_bonus: bNoRegen / bonus_enum: SP_NO_REGEN / descricao: Stops HP or SP regeneration (x: 1=HP, 2=SP)
+id_bonus: 2016 / name_bonus: bAddEffWhenHit / bonus_enum: SP_ADDEFF_WHENHIT / descricao: (bAddEffWhenHit)
+id_bonus: 2017 / name_bonus: bAutoSpellWhenHit / bonus_enum: SP_AUTOSPELL_WHENHIT / descricao: (bAutoSpellWhenHit)
+id_bonus: 2018 / name_bonus: bSkillAtk / bonus_enum: SP_SKILL_ATK / descricao: (bSkillAtk)
+id_bonus: 2019 / name_bonus: bUnstripable / bonus_enum: SP_UNSTRIPABLE / descricao: (bUnstripable)
+id_bonus: 2020 / name_bonus: bAutoSpellOnSkill / bonus_enum: SP_AUTOSPELL_ONSKILL / descricao: (bAutoSpellOnSkill)
+id_bonus: 2021 / name_bonus: bSPGainValue / bonus_enum: SP_SP_GAIN_VALUE / descricao: Heals +n SP when killing an enemy with a melee-physical attack
+id_bonus: 2022 / name_bonus: bHPRegenRate / bonus_enum: SP_HP_REGEN_RATE / descricao: (bHPRegenRate)
+id_bonus: 2023 / name_bonus: bHPLossRate / bonus_enum: SP_HP_LOSS_RATE / descricao: (bHPLossRate)
+id_bonus: 2024 / name_bonus: bAddRace2 / bonus_enum: SP_ADDRACE2 / descricao: (bAddRace2)
+id_bonus: 2025 / name_bonus: bHPGainValue / bonus_enum: SP_HP_GAIN_VALUE / descricao: Heals +n HP when killing an enemy with a melee-physical attack
+id_bonus: 2026 / name_bonus: bSubSize / bonus_enum: SP_SUBSIZE / descricao: (bSubSize)
+id_bonus: 2027 / name_bonus: bHPDrainValueClass / bonus_enum: SP_HP_DRAIN_VALUE_CLASS / descricao: (bHPDrainValueClass)
+id_bonus: 2028 / name_bonus: bAddItemHealRate / bonus_enum: SP_ADD_ITEM_HEAL_RATE / descricao: Increases HP recovered by n% for healing items
+id_bonus: 2029 / name_bonus: bSPDrainValueClass / bonus_enum: SP_SP_DRAIN_VALUE_CLASS / descricao: (bSPDrainValueClass)
+id_bonus: 2030 / name_bonus: bExpAddRace / bonus_enum: SP_EXP_ADDRACE / descricao: (bExpAddRace)
+id_bonus: 2031 / name_bonus: bSPGainRace / bonus_enum: SP_SP_GAIN_RACE / descricao: (bSPGainRace)
+id_bonus: 2032 / name_bonus: bSubRace2 / bonus_enum: SP_SUBRACE2 / descricao: (bSubRace2)
+id_bonus: 2033 / name_bonus: bUnbreakableShoes / bonus_enum: SP_UNBREAKABLE_SHOES / descricao: (bUnbreakableShoes)
+id_bonus: 2034 / name_bonus: bUnstripableWeapon / bonus_enum: SP_UNSTRIPABLE_WEAPON / descricao: (bUnstripableWeapon)
+id_bonus: 2035 / name_bonus: bUnstripableArmor / bonus_enum: SP_UNSTRIPABLE_ARMOR / descricao: (bUnstripableArmor)
+id_bonus: 2036 / name_bonus: bUnstripableHelm / bonus_enum: SP_UNSTRIPABLE_HELM / descricao: (bUnstripableHelm)
+id_bonus: 2037 / name_bonus: bUnstripableShield / bonus_enum: SP_UNSTRIPABLE_SHIELD / descricao: (bUnstripableShield)
+id_bonus: 2038 / name_bonus: bIntravision / bonus_enum: SP_INTRAVISION / descricao: (bIntravision)
+id_bonus: 2039 / name_bonus: bAddMonsterDropItemGroup / bonus_enum: SP_ADD_MONSTER_DROP_ITEMGROUP / descricao: (bAddMonsterDropItemGroup)
+id_bonus: 2040 / name_bonus: bSPLossRate / bonus_enum: SP_SP_LOSS_RATE / descricao: (bSPLossRate)
+id_bonus: 2041 / name_bonus: bAddSkillBlow / bonus_enum: SP_ADD_SKILL_BLOW / descricao: (bAddSkillBlow)
+id_bonus: 2042 / name_bonus: bSPVanishRate / bonus_enum: SP_SP_VANISH_RATE / descricao: (bSPVanishRate)
+id_bonus: 2043 / name_bonus: bMagicSPGainValue / bonus_enum: SP_MAGIC_SP_GAIN_VALUE / descricao: Heals +n SP when killing an enemy with a magical attack
+id_bonus: 2044 / name_bonus: bMagicHPGainValue / bonus_enum: SP_MAGIC_HP_GAIN_VALUE / descricao: Heals +n HP when killing an enemy with a magical attack
+id_bonus: 2045 / name_bonus: bAddMonsterIdDropItem / bonus_enum: SP_ADD_MONSTER_ID_DROP_ITEM / descricao: (bAddMonsterIdDropItem)
+id_bonus: 2046 / name_bonus: bMatk / bonus_enum: SP_EMATK / descricao: Magical attack power + n
+id_bonus: 2106 / name_bonus: bMatk2 / bonus_enum: SP_EMATK_HIDDEN / descricao: Magical attack power + n (not visible in status window)
+id_bonus: 2047 / name_bonus: bComaClass / bonus_enum: SP_COMA_CLASS / descricao: (bComaClass)
+id_bonus: 2048 / name_bonus: bComaRace / bonus_enum: SP_COMA_RACE / descricao: (bComaRace)
+id_bonus: 2049 / name_bonus: bSkillUseSPrate / bonus_enum: SP_SKILL_USE_SP_RATE / descricao: (bSkillUseSPrate)
+id_bonus: 2050 / name_bonus: bSkillCooldown / bonus_enum: SP_SKILL_COOLDOWN / descricao: (bSkillCooldown)
+id_bonus: 2051 / name_bonus: bSkillFixedCast / bonus_enum: SP_SKILL_FIXEDCAST / descricao: (bSkillFixedCast)
+id_bonus: 2052 / name_bonus: bSkillVariableCast / bonus_enum: SP_SKILL_VARIABLECAST / descricao: (bSkillVariableCast)
+id_bonus: 2053 / name_bonus: bFixedCastrate / bonus_enum: SP_FIXCASTRATE / descricao: Increases fixed cast time of all skills by n% (has effect in RENEWAL_CAST only)
+id_bonus: 2054 / name_bonus: bVariableCastrate / bonus_enum: SP_VARCASTRATE / descricao: Increases variable cast time of all skills by n%. (If RENEWAL_CAST is NOT defined, this bonus is equal to bCastrate)
+id_bonus: 2055 / name_bonus: bSkillUseSP / bonus_enum: SP_SKILL_USE_SP / descricao: (bSkillUseSP)
+id_bonus: 2056 / name_bonus: bMagicAtkEle / bonus_enum: SP_MAGIC_ATK_ELE / descricao: (bMagicAtkEle)
+id_bonus: 2057 / name_bonus: bFixedCast / bonus_enum: SP_ADD_FIXEDCAST / descricao: Increases fixed cast time of all skills by t milliseconds (has effect in RENEWAL_CAST only)
+id_bonus: 2058 / name_bonus: bVariableCast / bonus_enum: SP_ADD_VARIABLECAST / descricao: Increases variable cast time of all skills by t milliseconds
+id_bonus: 2059 / name_bonus: bSetDefRace / bonus_enum: SP_SET_DEF_RACE / descricao: (bSetDefRace)
+id_bonus: 2060 / name_bonus: bSetMDefRace / bonus_enum: SP_SET_MDEF_RACE / descricao: (bSetMDefRace)
+id_bonus: 2061 / name_bonus: bHPVanishRate / bonus_enum: SP_HP_VANISH_RATE / descricao: (bHPVanishRate)
+id_bonus: 2062 / name_bonus: bIgnoreDefClass / bonus_enum: SP_IGNORE_DEF_CLASS / descricao: Disregard DEF against enemies of class c
+id_bonus: 2063 / name_bonus: bDefRatioAtkClass / bonus_enum: SP_DEF_RATIO_ATK_CLASS / descricao: Deals more damage to enemies of class c with higher defense
+id_bonus: 2064 / name_bonus: bAddClass / bonus_enum: SP_ADDCLASS / descricao: (bAddClass)
+id_bonus: 2065 / name_bonus: bSubClass / bonus_enum: SP_SUBCLASS / descricao: (bSubClass)
+id_bonus: 2066 / name_bonus: bMagicAddClass / bonus_enum: SP_MAGIC_ADDCLASS / descricao: (bMagicAddClass)
+id_bonus: 2067 / name_bonus: bWeaponComaClass / bonus_enum: SP_WEAPON_COMA_CLASS / descricao: (bWeaponComaClass)
+id_bonus: 2068 / name_bonus: bIgnoreMdefClassRate / bonus_enum: SP_IGNORE_MDEF_CLASS_RATE / descricao: (bIgnoreMdefClassRate)
+id_bonus: 2069 / name_bonus: bExpAddClass / bonus_enum: SP_EXP_ADDCLASS / descricao: (bExpAddClass)
+id_bonus: 2070 / name_bonus: bAddClassDropItem / bonus_enum: SP_ADD_CLASS_DROP_ITEM / descricao: (bAddClassDropItem)
+id_bonus: 2071 / name_bonus: bAddClassDropItemGroup / bonus_enum: SP_ADD_CLASS_DROP_ITEMGROUP / descricao: (bAddClassDropItemGroup)
+id_bonus: 2072 / name_bonus: bAddMaxWeight / bonus_enum: SP_ADDMAXWEIGHT / descricao: MaxWeight + n (in units of 0.1)
+id_bonus: 2073 / name_bonus: bAddItemGroupHealRate / bonus_enum: SP_ADD_ITEMGROUP_HEAL_RATE / descricao: (bAddItemGroupHealRate)
+id_bonus: 2074 / name_bonus: bHPVanishRaceRate / bonus_enum: SP_HP_VANISH_RACE_RATE / descricao: (bHPVanishRaceRate)
+id_bonus: 2075 / name_bonus: bSPVanishRaceRate / bonus_enum: SP_SP_VANISH_RACE_RATE / descricao: (bSPVanishRaceRate)
+id_bonus: 2076 / name_bonus: bAbsorbDmgMaxHP / bonus_enum: SP_ABSORB_DMG_MAXHP / descricao: If the damage received is more than n% of Max HP, the damage received is [TotalDamage] - [n% of MaxHP] (Doesn't stack, will use the highest value) (Legacy rAthena behavior)
+id_bonus: 2077 / name_bonus: bSubSkill / bonus_enum: SP_SUB_SKILL / descricao: (bSubSkill)
+id_bonus: 2078 / name_bonus: bSubDefEle / bonus_enum: SP_SUBDEF_ELE / descricao: (bSubDefEle)
+id_bonus: 2079 / name_bonus: bStateNoRecoverRace / bonus_enum: SP_STATE_NORECOVER_RACE / descricao: (bStateNoRecoverRace)
+id_bonus: 2080 / name_bonus: bCriticalLong / bonus_enum: SP_CRITICAL_RANGEATK / descricao: Critical + n for normal long ranged attack (won't be shown in status window)
+id_bonus: 2081 / name_bonus: bMagicAddRace2 / bonus_enum: SP_MAGIC_ADDRACE2 / descricao: (bMagicAddRace2)
+id_bonus: 2082 / name_bonus: bIgnoreMdefRace2Rate / bonus_enum: SP_IGNORE_MDEF_RACE2_RATE / descricao: (bIgnoreMdefRace2Rate)
+id_bonus: 2085 / name_bonus: bDropAddRace / bonus_enum: SP_DROP_ADDRACE / descricao: (bDropAddRace)
+id_bonus: 2086 / name_bonus: bDropAddClass / bonus_enum: SP_DROP_ADDCLASS / descricao: (bDropAddClass)
+id_bonus: 2087 / name_bonus: bNoMadoFuel / bonus_enum: SP_NO_MADO_FUEL / descricao: (bNoMadoFuel)
+id_bonus: 2088 / name_bonus: bIgnoreDefClassRate / bonus_enum: SP_IGNORE_DEF_CLASS_RATE / descricao: (bIgnoreDefClassRate)
+id_bonus: 2089 / name_bonus: bRegenPercentHP / bonus_enum: SP_REGEN_PERCENT_HP / descricao: (bRegenPercentHP)
+id_bonus: 2090 / name_bonus: bRegenPercentSP / bonus_enum: SP_REGEN_PERCENT_SP / descricao: (bRegenPercentSP)
+id_bonus: 2091 / name_bonus: bSkillDelay / bonus_enum: SP_SKILL_DELAY / descricao: (bSkillDelay)
+id_bonus: 2092 / name_bonus: bNoWalkDelay / bonus_enum: SP_NO_WALK_DELAY / descricao: (bNoWalkDelay)
+id_bonus: 2093 / name_bonus: bLongSPGainValue / bonus_enum: SP_LONG_SP_GAIN_VALUE / descricao: Heals +n SP when killing an enemy with a range-physical attack
+id_bonus: 2094 / name_bonus: bLongHPGainValue / bonus_enum: SP_LONG_HP_GAIN_VALUE / descricao: Heals +n HP when killing an enemy with a range-physical attack
+id_bonus: 2096 / name_bonus: bMagicSubSize / bonus_enum: SP_MAGIC_SUBSIZE / descricao: (bMagicSubSize)
+id_bonus: 2097 / name_bonus: bCritDefRate / bonus_enum: SP_CRIT_DEF_RATE / descricao: Decreases critical damage received by n%
+id_bonus: 2098 / name_bonus: bMagicSubDefEle / bonus_enum: SP_MAGIC_SUBDEF_ELE / descricao: (bMagicSubDefEle)
+id_bonus: 2099 / name_bonus: bReduceDamageReturn / bonus_enum: SP_REDUCE_DAMAGE_RETURN / descricao: Reduces reflected damage (melee/ranged/magic) by n%
+id_bonus: 2103 / name_bonus: bAbsorbDmgMaxHP2 / bonus_enum: SP_ABSORB_DMG_MAXHP2 / descricao: If the damage received is more than n% of Max HP, the damage received is reduced to n% of MaxHP (Doesn't stack, will use the highest value) (Official behavior)
+id_bonus: 2100 / name_bonus: bAddItemSPHealRate / bonus_enum: SP_ADD_ITEM_SPHEAL_RATE / descricao: Increases SP recovered by n% for healing items
+id_bonus: 2101 / name_bonus: bAddItemGroupSPHealRate / bonus_enum: SP_ADD_ITEMGROUP_SPHEAL_RATE / descricao: (bAddItemGroupSPHealRate)
+id_bonus: 2102 / name_bonus: bWeaponSubSize / bonus_enum: SP_WEAPON_SUBSIZE / descricao: (bWeaponSubSize)
+id_bonus: 2108 / name_bonus: bNonCritAtkRate / bonus_enum: SP_NON_CRIT_ATK_RATE / descricao: Increases non-critical damage by +n%
+id_bonus: 2109 / name_bonus: bSmokeGearProg / bonus_enum: SP_SMOKE_GEAR_PROG / descricao: (bSmokeGearProg)
